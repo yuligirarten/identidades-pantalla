@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe · Identidades en pantalla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4f1ea;
+    --paper-2: #ebe6db;
+    --ink: #1f1d1a;
+    --ink-2: #4a4641;
+    --muted: #8c8780;
+    --line: #b8b1a3;
+    --line-soft: #d6d0c1;
+    --accent: #c3553a;
+    --accent-soft: #e8c4b8;
+    --note: #5a7a5a;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --serif: 'Fraunces', Georgia, serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--mono);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+    padding: 40px 20px 80px;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .doc-header {
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    padding: 28px 32px;
+    margin-bottom: 48px;
+    position: relative;
+  }
+  .doc-header::after {
+    content: "WIREFRAME · v0.1";
+    position: absolute;
+    top: -12px;
+    right: 24px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    padding: 4px 10px;
+  }
+  .doc-header h1 {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+  .doc-header .subtitle {
+    font-size: 12px;
+    color: var(--ink-2);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .doc-header .meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    flex-wrap: wrap;
+  }
+  .doc-header .meta span strong { color: var(--ink); display: block; margin-top: 2px; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 56px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before { content: ""; width: 24px; height: 1px; background: var(--muted); }
+  .section-label::after { content: ""; flex: 1; height: 1px; background: var(--line-soft); }
+  .sitemap {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    padding: 32px;
+  }
+  .sitemap-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .sitemap-flow {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 24px;
+  }
+  .node {
+    border: 1.5px solid var(--ink);
+    padding: 14px 10px;
+    background: var(--paper);
+    text-align: center;
+    font-size: 10px;
+  }
+  .node + .node { margin-left: -1.5px; }
+  .node .id {
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .node .name {
+    font-family: var(--serif);
+    font-size: 12px;
+    line-height: 1.2;
+  }
+  .node.entry { background: var(--ink); }
+  .node.entry .id { color: var(--paper); }
+  .node.entry .name { color: var(--paper); }
+  .node.exit { background: var(--accent-soft); }
+  .optional-nodes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--line);
+  }
+  .optional-node {
+    border: 1px dashed var(--line);
+    padding: 10px;
+    text-align: center;
+    font-size: 10px;
+    background: var(--paper-2);
+  }
+  .optional-node .tag {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--note);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .optional-node .label {
+    font-family: var(--serif);
+    font-size: 12px;
+    color: var(--ink-2);
+  }
+  .module {
+    margin-top: 32px;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    overflow: hidden;
+  }
+  .module-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .module-header .id-block { display: flex; align-items: baseline; gap: 12px; }
+  .module-header .pid {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent-soft);
+  }
+  .module-header .pname {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .module-header .ptype {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    border: 1px solid var(--accent-soft);
+    padding: 4px 10px;
+  }
+  .module-body { padding: 24px; }
+  .ph {
+    border: 1.5px dashed var(--line);
+    background: repeating-linear-gradient(135deg, transparent, transparent 8px, rgba(184,177,163,0.12) 8px, rgba(184,177,163,0.12) 9px);
+    padding: 16px;
+    margin-bottom: 12px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .ph .ph-type {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .ph .ph-note {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 6px;
+    font-style: italic;
+  }
+  .ph.tall { min-height: 180px; }
+  .ph.med { min-height: 120px; }
+  .ph.short { min-height: 50px; padding: 10px; }
+  .ph.text { border-style: solid; border-color: var(--line); background: var(--paper-2); }
+  .ph.viz { border-color: var(--accent); }
+  .ph.viz .ph-type { color: var(--accent); }
+  .ph.testimonio { border-color: var(--note); }
+  .ph.testimonio .ph-type { color: var(--note); }
+  .ph.insta { border-style: solid; border-color: var(--ink); background: var(--paper); }
+  .ph.cta { border-color: var(--accent); background: var(--accent-soft); }
+  .ph.cta .ph-type { color: var(--accent); }
+  .row { display: grid; gap: 12px; margin-bottom: 12px; }
+  .row-2 { grid-template-columns: 1fr 1fr; }
+  .row-2-1 { grid-template-columns: 2fr 1fr; }
+  .row-1-2 { grid-template-columns: 1fr 2fr; }
+  .row-3 { grid-template-columns: repeat(3, 1fr); }
+  .pill-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .pill {
+    font-size: 10px;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink-2);
+    border-radius: 100px;
+  }
+  .pill.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .module-notes {
+    background: var(--paper-2);
+    border-top: 1px dashed var(--line);
+    padding: 14px 24px;
+    font-size: 11px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+  .module-notes strong { color: var(--note); font-weight: 700; }
+  .module-notes ul { padding-left: 16px; margin-top: 4px; }
+  .doc-footer {
+    margin-top: 64px;
+    border-top: 2px solid var(--ink);
+    padding-top: 20px;
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    padding: 16px;
+    border: 1px dashed var(--line);
+    background: var(--paper-2);
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 10px; color: var(--ink-2); }
+  .legend-swatch { width: 18px; height: 18px; flex-shrink: 0; }
+  .legend-swatch.text { border: 1.5px solid var(--line); background: var(--paper-2); }
+  .legend-swatch.viz { border: 1.5px dashed var(--accent); }
+  .legend-swatch.testimonio { border: 1.5px dashed var(--note); }
+  .legend-swatch.insta { border: 1.5px solid var(--ink); }
+  .legend-swatch.cta { border: 1.5px dashed var(--accent); background: var(--accent-soft); }
+  @media (max-width: 800px) {
+    .sitemap-flow { grid-template-columns: repeat(2, 1fr); }
+    .node + .node { margin-left: 0; margin-top: -1.5px; }
+    .row-2, .row-2-1, .row-1-2, .row-3 { grid-template-columns: 1fr; }
+    .optional-nodes, .legend { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="doc-header">
+    <h1>Identidades en pantalla</h1>
+    <div class="subtitle">Wireframe estructural · Web doc interactivo</div>
+    <div class="meta">
+      <span>Autora<strong>Yulianna Girarte Neria</strong></span>
+      <span>Programa<strong>MHD · Tec de Monterrey</strong></span>
+      <span>Etapa<strong>PD II · Avance medio</strong></span>
+      <span>Versión<strong>v0.1 · 2026</strong></span>
+    </div>
+  </header>
+
+  <div class="section-label">01 · Mapa de navegación</div>
+  <div class="sitemap">
+    <div class="sitemap-title">Recorrido principal (≈ 10 minutos)</div>
+    <div class="sitemap-flow">
+      <div class="node entry"><div class="id">P00</div><div class="name">Inicio</div></div>
+      <div class="node"><div class="id">P01</div><div class="name">¿Quién eres en IG?</div></div>
+      <div class="node"><div class="id">P02</div><div class="name">La vitrina y el espejo</div></div>
+      <div class="node"><div class="id">P03</div><div class="name">El algoritmo invisible</div></div>
+      <div class="node"><div class="id">P04</div><div class="name">Voces del campo</div></div>
+      <div class="node"><div class="id">P05</div><div class="name">¿Y tú cómo te presentas?</div></div>
+      <div class="node exit"><div class="id">P06</div><div class="name">Créditos</div></div>
+    </div>
+    <div class="optional-nodes">
+      <div class="optional-node"><div class="tag">Nodo opcional</div><div class="label">Glosario</div></div>
+      <div class="optional-node"><div class="tag">Nodo opcional</div><div class="label">Nota teórica</div></div>
+      <div class="optional-node"><div class="tag">Nodo opcional</div><div class="label">Datos visualizados</div></div>
+      <div class="optional-node"><div class="tag">Nodo opcional</div><div class="label">Ficha metodológica</div></div>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-swatch text"></div>Texto / guion</div>
+      <div class="legend-item"><div class="legend-swatch viz"></div>Visualización de datos</div>
+      <div class="legend-item"><div class="legend-swatch testimonio"></div>Testimonio</div>
+      <div class="legend-item"><div class="legend-swatch insta"></div>Post de Instagram</div>
+      <div class="legend-item"><div class="legend-swatch cta"></div>Interacción / CTA</div>
+    </div>
+  </div>
+
+  <div class="section-label">02 · Wireframes por módulo</div>
+
+  <div class="module">
+    <div class="module-header">
+      <div class="id-block"><span class="pid">P00</span><span class="pname">Inicio</span></div>
+      <span class="ptype">Pantalla detonante</span>
+    </div>
+    <div class="module-body">
+      <div class="ph cta tall"><div><div class="ph-type">Pregunta detonante</div><div class="ph-note">"¿Quién eres cuando publicas?" — tipografía grande, atmósfera. Botón único.</div></div></div>
+      <div class="row row-2">
+        <div class="ph short"><div><div class="ph-type">Logo / título corto</div></div></div>
+        <div class="ph short"><div><div class="ph-type">Botón "Empezar"</div></div></div>
+      </div>
+    </div>
+    <div class="module-notes">
+      <strong>Propósito ·</strong> Captar al usuario en 5 segundos. Sin scroll, sin distracciones.<br>
+      <strong>Contenido ·</strong> Solo texto + 1 CTA. Sin datos ni testimonios aquí.
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-header">
+      <div class="id-block"><span class="pid">P01</span><span class="pname">¿Quién eres en Instagram?</span></div>
+      <span class="ptype">Introducción narrativa</span>
+    </div>
+    <div class="module-body">
+      <div class="ph text med"><div><div class="ph-type">Guion en 2ª persona</div><div class="ph-note">"Abres la app. Subes una foto. Eliges un filtro..." — 4 a 6 párrafos cortos.</div></div></div>
+      <div class="row row-2">
+        <div class="ph insta tall"><div><div class="ph-type">Post de IG · ejemplo 1</div><div class="ph-note">Mockup curado, sin métricas reales.</div></div></div>
+        <div class="ph insta tall"><div><div class="ph-type">Post de IG · ejemplo 2</div><div class="ph-note">Contraste estético con el primero.</div></div></div>
+      </div>
+      <div class="ph cta"><div><div class="ph-type">Continuar a P02</div></div></div>
+    </div>
+    <div class="module-notes"><strong>Curaduría IG ·</strong> 2 posts ilustrativos. Sirven para enganchar.</div>
+  </div>
+
+  <div class="module">
+    <div class="module-header">
+      <div class="id-block"><span class="pid">P02</span><span class="pname">La vitrina y el espejo</span></div>
+      <span class="ptype">Tensión autenticidad / performance</span>
+    </div>
+    <div class="module-body">
+      <div class="ph text"><div><div class="ph-type">Texto de apertura</div><div class="ph-note">Marco conceptual breve: la vitrina (lo público) vs. el espejo (lo íntimo).</div></div></div>
+      <div class="row row-2">
+        <div>
+          <div class="ph testimonio med"><div><div class="ph-type">Testimonio T-01</div><div class="ph-note">Cita corta + tag de tema. Lee de data.json.</div></div></div>
+          <div class="ph testimonio med"><div><div class="ph-type">Testimonio T-02</div><div class="ph-note">Contraste con el anterior.</div></div></div>
+        </div>
+        <div class="ph viz tall"><div><div class="ph-type">Visualización V-02</div><div class="ph-note">Eje vitrina / espejo. Cada testimonio es un punto. Hover = cita expandida.</div></div></div>
+      </div>
+      <div class="ph insta med"><div><div class="ph-type">Post de IG comentado</div><div class="ph-note">Análisis multimodal: imagen + caption + lectura crítica.</div></div></div>
+      <div class="ph cta"><div><div class="ph-type">Continuar a P03</div></div></div>
+    </div>
+    <div class="module-notes">
+      <strong>Datos que alimentan este módulo ·</strong>
+      <ul>
+        <li>Testimonios etiquetados con tema "vitrina/espejo" en data.json</li>
+        <li>1–2 posts curados con consentimiento</li>
+        <li>Visualización V-02 (posicionamiento bidimensional)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-header">
+      <div class="id-block"><span class="pid">P03</span><span class="pname">El algoritmo invisible</span></div>
+      <span class="ptype">Dimensión algorítmica</span>
+    </div>
+    <div class="module-body">
+      <div class="ph text short"><div><div class="ph-type">Texto introductorio</div></div></div>
+      <div class="ph viz tall"><div><div class="ph-type">Visualización V-03 · principal</div><div class="ph-note">Red / flujo del algoritmo. Animación suave. Muestra cómo el contenido se filtra.</div></div></div>
+      <div class="row row-3">
+        <div class="ph viz med"><div><div class="ph-type">Stat 1</div><div class="ph-note">% que reconoce el algoritmo</div></div></div>
+        <div class="ph viz med"><div><div class="ph-type">Stat 2</div><div class="ph-note">% que se autocensura</div></div></div>
+        <div class="ph viz med"><div><div class="ph-type">Stat 3</div><div class="ph-note">% que mide engagement</div></div></div>
+      </div>
+      <div class="ph testimonio"><div><div class="ph-type">Testimonio T-03 · cita destacada</div><div class="ph-note">Voz que humaniza los datos.</div></div></div>
+      <div class="ph cta"><div><div class="ph-type">Continuar a P04</div></div></div>
+    </div>
+    <div class="module-notes"><strong>Visualización clave ·</strong> Aquí está el riesgo más alto de producción. Definir si V-03 es estática (SVG) o animada (D3 / Lottie) antes de codear.</div>
+  </div>
+
+  <div class="module">
+    <div class="module-header">
+      <div class="id-block"><span class="pid">P04</span><span class="pname">Voces del campo</span></div>
+      <span class="ptype">Galería filtrable</span>
+    </div>
+    <div class="module-body">
+      <div class="ph text short"><div><div class="ph-type">Texto introductorio + nota metodológica</div></div></div>
+      <div class="pill-row">
+        <span class="pill active">Todos</span>
+        <span class="pill">Vitrina</span>
+        <span class="pill">Espejo</span>
+        <span class="pill">Algoritmo</span>
+        <span class="pill">Autocensura</span>
+        <span class="pill">Comunidad</span>
+      </div>
+      <div class="row row-3">
+        <div class="ph testimonio med"><div><div class="ph-type">T-01</div><div class="ph-note">Perfil anonimizado</div></div></div>
+        <div class="ph testimonio med"><div><div class="ph-type">T-02</div></div></div>
+        <div class="ph testimonio med"><div><div class="ph-type">T-03</div></div></div>
+        <div class="ph testimonio med"><div><div class="ph-type">T-04</div></div></div>
+        <div class="ph testimonio med"><div><div class="ph-type">T-05</div></div></div>
+        <div class="ph testimonio med"><div><div class="ph-type">T-06</div><div class="ph-note">+3 más</div></div></div>
+      </div>
+      <div class="ph cta"><div><div class="ph-type">Continuar a P05</div></div></div>
+    </div>
+    <div class="module-notes"><strong>Núcleo de datos ·</strong> Los 9 testimonios de data.json viven aquí. Click en tarjeta = expansión con cita larga + tema(s).</div>
+  </div>
+
+  <div class="module">
+    <div class="module-header">
+      <div class="id-block"><span class="pid">P05</span><span class="pname">¿Y tú cómo te presentas?</span></div>
+      <span class="ptype">Autocuestionario reflexivo</span>
+    </div>
+    <div class="module-body">
+      <div class="ph text short"><div><div class="ph-type">Invitación a participar</div></div></div>
+      <div class="ph cta tall"><div><div class="ph-type">Bloque de pregunta (× 5 a 7)</div><div class="ph-note">Una pregunta a la vez. Opciones tipo escala o selección múltiple. Avance visible.</div></div></div>
+      <div class="row row-1-2">
+        <div class="ph viz tall"><div><div class="ph-type">Perfil resultado</div><div class="ph-note">Visualización tipo "tu mapa"</div></div></div>
+        <div>
+          <div class="ph text med"><div><div class="ph-type">Lectura interpretativa</div><div class="ph-note">Texto que cambia según respuestas. Sin juicio.</div></div></div>
+          <div class="ph cta short"><div><div class="ph-type">Compartir resultado</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="module-notes"><strong>Riesgo ·</strong> Pieza más interactiva. Definir lógica respuestas → perfil antes de codear. Posible mover parte a PD III si presiona el cronograma.</div>
+  </div>
+
+  <div class="module">
+    <div class="module-header">
+      <div class="id-block"><span class="pid">P06</span><span class="pname">Créditos</span></div>
+      <span class="ptype">Cierre y metodología</span>
+    </div>
+    <div class="module-body">
+      <div class="row row-2-1">
+        <div>
+          <div class="ph text med"><div><div class="ph-type">Sobre el proyecto</div><div class="ph-note">Marco, propósito, autora.</div></div></div>
+          <div class="ph text med"><div><div class="ph-type">Metodología resumida</div><div class="ph-note">+ link a ficha completa.</div></div></div>
+          <div class="ph text short"><div><div class="ph-type">Consentimiento informado</div></div></div>
+        </div>
+        <div>
+          <div class="ph short"><div><div class="ph-type">Licencia CC BY-NC-SA</div></div></div>
+          <div class="ph short"><div><div class="ph-type">Código MIT · GitHub</div></div></div>
+          <div class="ph short"><div><div class="ph-type">DOI / Zenodo</div></div></div>
+          <div class="ph short"><div><div class="ph-type">Contacto</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="module-notes"><strong>Contenido estable ·</strong> Casi no cambia entre PD II y PD III. Buen candidato para montar al 100% ya.</div>
+  </div>
+
+  <div class="section-label">03 · Qué llega al 50% para esta entrega</div>
+  <div class="sitemap">
+    <div class="sitemap-title">Propuesta de prioridad</div>
+    <div class="row row-2" style="gap: 16px;">
+      <div class="ph text" style="text-align: left; padding: 18px; min-height: auto;">
+        <div style="text-align: left; width: 100%;">
+          <div class="ph-type" style="margin-bottom: 10px;">PRIORIDAD ALTA · 50% montado ahora</div>
+          <ul style="padding-left: 18px; font-size: 11px; line-height: 1.8; color: var(--ink-2); text-align: left;">
+            <li>P00 — completo</li>
+            <li>P02 — guion + 2 testimonios + V-02 boceto</li>
+            <li>P04 — galería con los 9 testimonios reales</li>
+            <li>P06 — completo</li>
+            <li>Navegación entre los 6 módulos: funcional</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ph testimonio" style="text-align: left; padding: 18px; min-height: auto;">
+        <div style="text-align: left; width: 100%;">
+          <div class="ph-type" style="margin-bottom: 10px;">PARA PD III · cerrar al 90–100%</div>
+          <ul style="padding-left: 18px; font-size: 11px; line-height: 1.8; color: var(--ink-2); text-align: left;">
+            <li>P01 — guion final + posts curados</li>
+            <li>P03 — V-03 algoritmo (versión animada)</li>
+            <li>P05 — lógica de autocuestionario</li>
+            <li>Nodos opcionales (glosario, ficha, etc.)</li>
+            <li>Pruebas de usabilidad + ajustes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="doc-footer">
+    <span>Wireframe · v0.1 · Mayo 2026</span>
+    <span>Identidades en pantalla · MHD Tec de Monterrey</span>
+    <span>Para revisión interna</span>
+  </footer>
+
+</div>
+</body>
+</html>

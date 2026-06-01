@@ -1,0 +1,55 @@
+:root {
+  --paper: #f4f1ea;
+  --paper-2: #ebe6db;
+  --paper-3: #ddd6c4;
+  --ink: #1f1d1a;
+  --ink-2: #4a4641;
+  --muted: #8c8780;
+  --line: #b8b1a3;
+  --line-soft: #d6d0c1;
+
+  --accent: #c3553a;
+  --accent-soft: #e8c4b8;
+  --note: #5a7a5a;
+  --note-soft: #c3d3c3;
+
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+
+  --fs-mono: 12px;
+  --fs-kicker: 11px;
+  --fs-body: 17px;
+  --fs-lead: 20px;
+  --fs-display-s: 32px;
+  --fs-display-m: 48px;
+  --fs-display-l: 56px;
+
+  --max-w: 920px;
+  --max-w-narrow: 640px;
+  --max-w-wide: 1200px;
+
+  --ease: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --t-fast: 180ms;
+  --t-med: 320ms;
+}
+
+@media (min-width: 720px) {
+  :root {
+    --fs-body: 18px;
+    --fs-lead: 22px;
+    --fs-display-s: 40px;
+    --fs-display-m: 64px;
+    --fs-display-l: 88px;
+  }
+}
