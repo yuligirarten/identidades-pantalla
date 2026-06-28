@@ -305,7 +305,118 @@
   "posts_de_ig": [],
   "glosario": [],
   "autocuestionario": {
-    "preguntas": [],
-    "perfiles_resultado": []
+    "_nota": "Borrador de ejemplo para el prototipo. La autora debe revisar/reescribir preguntas y perfiles.",
+    "preguntas": [
+      {
+        "id": "q1",
+        "texto": "Antes de subir algo, ¿cuánto piensas en quién lo va a ver?",
+        "opciones": [
+          { "texto": "Casi nada, lo subo y ya", "pesos": { "presentacion": -2, "conciencia": 0 } },
+          { "texto": "Pienso en la gente más cercana", "pesos": { "presentacion": -1, "conciencia": 0 } },
+          { "texto": "Pienso en cómo se va a leer en general", "pesos": { "presentacion": 1, "conciencia": 1 } },
+          { "texto": "Lo pienso mucho: edito según la audiencia", "pesos": { "presentacion": 2, "conciencia": 1 } }
+        ]
+      },
+      {
+        "id": "q2",
+        "texto": "¿Qué pasa con lo que NO publicas?",
+        "opciones": [
+          { "texto": "Publico casi todo lo que se me ocurre", "pesos": { "presentacion": 1, "conciencia": 0 } },
+          { "texto": "Filtro algunas cosas sin pensarlo mucho", "pesos": { "presentacion": 0, "conciencia": 0 } },
+          { "texto": "Guardo bastante para mí a propósito", "pesos": { "presentacion": -1, "conciencia": 1 } },
+          { "texto": "Lo importante casi nunca lo subo", "pesos": { "presentacion": -2, "conciencia": 1 } }
+        ]
+      },
+      {
+        "id": "q3",
+        "texto": "Tu feed o perfil, ¿se parece a cómo eres día a día?",
+        "opciones": [
+          { "texto": "Es básicamente igual", "pesos": { "presentacion": -1, "conciencia": 0 } },
+          { "texto": "Es una versión un poco más cuidada", "pesos": { "presentacion": 0, "conciencia": 0 } },
+          { "texto": "Es claramente una versión presentable", "pesos": { "presentacion": 1, "conciencia": 1 } },
+          { "texto": "Es casi un personaje aparte de mí", "pesos": { "presentacion": 2, "conciencia": 1 } }
+        ]
+      },
+      {
+        "id": "q4",
+        "texto": "¿Piensas en cómo el algoritmo va a tratar lo que subes?",
+        "opciones": [
+          { "texto": "Nunca, ni se me ocurre", "pesos": { "presentacion": 0, "conciencia": -2 } },
+          { "texto": "A veces, vagamente", "pesos": { "presentacion": 0, "conciencia": -1 } },
+          { "texto": "Sí, calculo horarios o formato", "pesos": { "presentacion": 1, "conciencia": 1 } },
+          { "texto": "Sí, y a veces decido NO subir por eso", "pesos": { "presentacion": -1, "conciencia": 2 } }
+        ]
+      },
+      {
+        "id": "q5",
+        "texto": "Cuando algo tuyo recibe pocas reacciones, ¿qué sientes?",
+        "opciones": [
+          { "texto": "Nada, ni lo miro", "pesos": { "presentacion": -1, "conciencia": -1 } },
+          { "texto": "Curiosidad, sin más", "pesos": { "presentacion": 0, "conciencia": 0 } },
+          { "texto": "Me replanteo qué publicar", "pesos": { "presentacion": 1, "conciencia": 1 } },
+          { "texto": "Me afecta y ajusto lo siguiente", "pesos": { "presentacion": 2, "conciencia": 1 } }
+        ]
+      },
+      {
+        "id": "q6",
+        "texto": "¿Para quién sientes que publicas, en el fondo?",
+        "opciones": [
+          { "texto": "Para mí, como archivo personal", "pesos": { "presentacion": -2, "conciencia": 0 } },
+          { "texto": "Para mi círculo cercano", "pesos": { "presentacion": -1, "conciencia": 0 } },
+          { "texto": "Para conocidos o seguidores en general", "pesos": { "presentacion": 1, "conciencia": 0 } },
+          { "texto": "Para una audiencia que quiero construir", "pesos": { "presentacion": 2, "conciencia": 1 } }
+        ]
+      }
+    ],
+    "perfiles_resultado": [
+      {
+        "id": "espejo_callado",
+        "banda": "espejo",
+        "conciencia": "opaco",
+        "nombre": "Espejo callado",
+        "descripcion": "Usas Instagram más como un espacio propio que como una vitrina. Subes poco para una mirada ajena y casi no piensas en la mediación del algoritmo: lo que publicas tiende a parecerse a tu día a día, sin demasiada puesta en escena.",
+        "pregunta_abierta": "Si nadie pudiera ver lo que subes, ¿cambiaría en algo lo que decides publicar?"
+      },
+      {
+        "id": "espejo_lucido",
+        "banda": "espejo",
+        "conciencia": "lucido",
+        "nombre": "Espejo lúcido",
+        "descripcion": "Te inclinas hacia lo íntimo y retenido, pero con conciencia de la maquinaria que hay detrás. Guardas cosas para ti a propósito y a veces decides no publicar justamente porque sabes cómo funciona la plataforma.",
+        "pregunta_abierta": "¿Qué guardas para ti, y cuánto de esa decisión tiene que ver con el algoritmo?"
+      },
+      {
+        "id": "doble_registro",
+        "banda": "centro",
+        "conciencia": "opaco",
+        "nombre": "Doble registro",
+        "descripcion": "Te mueves entre mostrar y reservar sin un plan demasiado explícito. Hay una versión un poco más cuidada de ti en el perfil, pero la mediación del algoritmo no es algo que nombres ni persigas activamente.",
+        "pregunta_abierta": "¿Dónde está, para ti, la frontera entre lo que muestras y lo que reservas?"
+      },
+      {
+        "id": "editor_consciente",
+        "banda": "centro",
+        "conciencia": "lucido",
+        "nombre": "Editor consciente",
+        "descripcion": "Equilibras vitrina y espejo, y lo haces sabiendo que hay un algoritmo de por medio. Curas con intención sin volcarte del todo en la performance: editas, calculas, pero también retienes a sabiendas.",
+        "pregunta_abierta": "Cuando editas algo antes de subirlo, ¿para quién editas en realidad?"
+      },
+      {
+        "id": "vitrina_espontanea",
+        "banda": "vitrina",
+        "conciencia": "opaco",
+        "nombre": "Vitrina espontánea",
+        "descripcion": "Tu perfil se inclina hacia lo público y performado, pero de forma intuitiva más que calculada. Muestras mucho y piensas en cómo se lee, aunque la lógica del algoritmo no sea algo que tengas presente al publicar.",
+        "pregunta_abierta": "¿Qué buscas cuando muestras, y qué pasaría si nadie reaccionara?"
+      },
+      {
+        "id": "vitrina_curada",
+        "banda": "vitrina",
+        "conciencia": "lucido",
+        "nombre": "Vitrina curada",
+        "descripcion": "Construyes lo que muestras pensando en cómo se va a leer y en cómo el algoritmo lo va a mover. Tu perfil es una puesta en escena deliberada, no un descuido.",
+        "pregunta_abierta": "¿Qué partes de ti quedan fuera de esa puesta en escena, y por qué?"
+      }
+    ]
   }
 }

@@ -1,0 +1,326 @@
+/* ============================================================
+   P05 — ¿Y tú cómo te presentas?
+   Autocuestionario reflexivo INTERACTIVO. Una pregunta a la vez
+   con barra de progreso; al terminar, una tarjeta de resultado
+   ubicada sobre el eje VITRINA ↔ ESPEJO.
+
+   La lógica vive en js/modules/p05.js; preguntas y perfiles en
+   data.json → autocuestionario.{preguntas, perfiles_resultado}.
+   ============================================================ */
+
+/* ---- Intro narrativa del módulo ---- */
+.p05-intro {
+  max-width: 56ch;
+  margin-bottom: var(--s-6);
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+/* ---- Escenario: contiene la pregunta actual o el resultado ---- */
+.q-stage {
+  max-width: var(--max-w-narrow);
+}
+
+/* Aparición suave al cambiar de pregunta / mostrar resultado */
+.q-stage > .q-card,
+.q-stage > .q-result {
+  animation: q-fade-in var(--t-med) var(--ease);
+}
+@keyframes q-fade-in {
+  from { opacity: 0; transform: translateY(var(--s-2)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .q-stage > .q-card,
+  .q-stage > .q-result {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   Tarjeta de PREGUNTA
+   ============================================================ */
+.q-card {
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  padding: var(--s-6);
+}
+
+/* ---- Indicador de progreso "Pregunta i de N" ---- */
+.q-progress {
+  margin-bottom: var(--s-5);
+}
+.q-progress-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  margin-bottom: var(--s-3);
+}
+.q-progress-track {
+  height: 4px;
+  background: var(--paper-3);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.q-progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 100px;
+}
+
+/* ---- Enunciado de la pregunta ---- */
+.q-text {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: var(--s-5);
+}
+
+/* ---- Opciones tipo escala (clicables) ---- */
+.q-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.q-option {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  padding: var(--s-3) var(--s-4);
+  border: 1.5px solid var(--line);
+  background: var(--paper-2);
+  font-family: var(--sans);
+  font-size: var(--fs-body);
+  color: var(--ink);
+  transition: border-color var(--t-fast) var(--ease),
+              background var(--t-fast) var(--ease),
+              color var(--t-fast) var(--ease);
+}
+.q-option:hover {
+  border-color: var(--ink);
+  background: var(--paper);
+}
+.q-option:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Opción elegida */
+.q-option.is-selected {
+  border-color: var(--accent);
+  background: var(--paper);
+}
+.q-option.is-selected .q-option-key {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--paper);
+}
+.q-option-key {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--s-6);
+  height: var(--s-6);
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  color: var(--ink-2);
+  background: var(--paper);
+}
+.q-option-text {
+  flex: 1 1 auto;
+  line-height: 1.35;
+}
+
+.q-hint {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+/* ---- Barra de navegación (atrás / siguiente / reiniciar) ---- */
+.q-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px dashed var(--line);
+}
+.q-nav-result {
+  justify-content: flex-start;
+}
+.q-btn {
+  cursor: pointer;
+  padding: var(--s-2) var(--s-4);
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  transition: background var(--t-fast) var(--ease),
+              color var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease);
+}
+.q-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.q-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.q-btn-next {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.q-btn-next:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper);
+}
+.q-btn-back {
+  border-color: var(--line);
+  color: var(--ink-2);
+}
+
+/* ============================================================
+   Tarjeta de RESULTADO (perfil final · placeholder)
+   ============================================================ */
+.q-result {
+  margin: 0;
+  border: 1.5px solid var(--ink);
+  border-left: 3px solid var(--accent);
+  background: var(--paper-2);
+  padding: var(--s-6);
+}
+.q-result-tag {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: var(--s-5);
+  outline: none;
+}
+
+/* ---- Eje VITRINA ↔ ESPEJO con marcador de posición ---- */
+.q-axis {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-5);
+}
+.q-axis-pole {
+  flex: 0 0 auto;
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+.q-axis-pole.is-espejo { color: var(--note); }
+.q-axis-pole.is-vitrina { color: var(--accent); }
+.q-axis-track {
+  position: relative;
+  flex: 1 1 auto;
+  height: 1.5px;
+  background: var(--line);
+}
+.q-axis-marker {
+  position: absolute;
+  top: 50%;
+  width: var(--s-3);
+  height: var(--s-3);
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translate(-50%, -50%);
+  transition: left var(--t-med) var(--ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .q-axis-marker { transition: none; }
+}
+
+/* ---- Lectura interpretativa del perfil ---- */
+.q-result-eje {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-2);
+  margin-bottom: var(--s-2);
+}
+.q-result-name {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: var(--fs-display-s);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: var(--s-4);
+}
+.q-result-desc {
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 60ch;
+  margin-bottom: var(--s-5);
+}
+/* Pregunta abierta: cierra sin juicio normativo */
+.q-result-open {
+  padding-top: var(--s-4);
+  border-top: 1px dashed var(--line);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--fs-lead);
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 56ch;
+}
+
+/* ============================================================
+   Responsivo
+   ============================================================ */
+@media (max-width: 720px) {
+  .q-card,
+  .q-result {
+    padding: var(--s-5);
+  }
+  .q-text {
+    font-size: 20px;
+  }
+  .q-axis {
+    flex-wrap: wrap;
+  }
+  .q-axis-track {
+    order: 3;
+    flex-basis: 100%;
+    margin-top: var(--s-2);
+  }
+  .q-nav {
+    flex-wrap: wrap;
+    gap: var(--s-2);
+  }
+  .q-btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}

@@ -1,0 +1,233 @@
+/* ============================================================
+   P02 — La vitrina y el espejo
+   Estilos propios del módulo:
+   - #p02-intro: placeholder realista del guion conceptual
+   - #p02-viz : visualización V-02, eje vitrina/espejo (datos reales)
+   Reutiliza .placeholder / .placeholder-tag / .placeholder-note (base.css)
+   ============================================================ */
+
+/* ---- Marco conceptual (placeholder realista) ---- */
+.p02-intro {
+  text-align: left;
+  padding: var(--s-6) var(--s-5);
+  margin: var(--s-5) 0 var(--s-7);
+}
+.p02-intro .placeholder-tag { text-align: left; }
+.p02-intro .placeholder-note {
+  text-align: left;
+  margin: var(--s-4) 0 0;
+  max-width: 64ch;
+}
+.p02-intro .placeholder-note strong { color: var(--ink); font-weight: 600; }
+
+/* Líneas fantasma que simulan el volumen real del texto (~3 párrafos) */
+.placeholder-lines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  margin-top: var(--s-4);
+}
+.placeholder-lines .ph-line {
+  height: 11px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--line-soft), var(--paper-3));
+  opacity: 0.7;
+}
+.placeholder-lines .ph-line.short { width: 58%; }
+.placeholder-lines .ph-line.ph-gap {
+  height: var(--s-3);
+  background: none;
+}
+
+/* ---- Visualización V-02 · eje vitrina / espejo ---- */
+.p02-viz {
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  padding: var(--s-6) var(--s-5) var(--s-5);
+  margin: var(--s-6) 0 var(--s-5);
+}
+.p02-viz .viz-tag {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: var(--s-3);
+}
+.p02-viz .viz-caption {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 62ch;
+  margin-bottom: var(--s-8);
+}
+
+/* Pista del eje */
+.p02-viz .axis {
+  position: relative;
+  height: 56px;
+  margin: 0 var(--s-3) var(--s-3);
+}
+.p02-viz .axis-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, var(--note) 0%, var(--line) 50%, var(--accent) 100%);
+  opacity: 0.55;
+}
+
+/* Marca del centro (0) */
+.p02-viz .axis-zero {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+.p02-viz .axis-zero-tick {
+  width: 1px;
+  height: 100%;
+  background: var(--line);
+  border-left: 1px dashed var(--line);
+}
+.p02-viz .axis-zero-label {
+  position: absolute;
+  bottom: -22px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+/* Punto por testimonio */
+.p02-viz .axis-point {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  cursor: default;
+  outline: none;
+}
+.p02-viz .axis-dot {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--line);
+  transition: transform var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease),
+              background var(--t-fast) var(--ease);
+}
+.p02-viz .axis-point.is-espejo .axis-dot { border-color: var(--note); }
+.p02-viz .axis-point.is-vitrina .axis-dot { border-color: var(--accent); }
+.p02-viz .axis-point.is-centro .axis-dot { border-color: var(--ink-2); }
+
+.p02-viz .axis-point:hover .axis-dot,
+.p02-viz .axis-point:focus .axis-dot,
+.p02-viz .axis-point:focus-visible .axis-dot {
+  transform: scale(1.35);
+}
+.p02-viz .axis-point.is-espejo:hover .axis-dot,
+.p02-viz .axis-point.is-espejo:focus .axis-dot { background: var(--note); }
+.p02-viz .axis-point.is-vitrina:hover .axis-dot,
+.p02-viz .axis-point.is-vitrina:focus .axis-dot { background: var(--accent); }
+.p02-viz .axis-point.is-centro:hover .axis-dot,
+.p02-viz .axis-point.is-centro:focus .axis-dot { background: var(--ink-2); }
+
+.p02-viz .axis-point:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+/* Tooltip CSS (cita_corta + id) */
+.p02-viz .axis-tip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  transform: translateX(-50%) translateY(4px);
+  width: max-content;
+  max-width: 240px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--s-3) var(--s-4);
+  border-radius: 4px;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity var(--t-fast) var(--ease),
+              transform var(--t-fast) var(--ease),
+              visibility var(--t-fast) var(--ease);
+}
+.p02-viz .axis-tip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--ink);
+}
+.p02-viz .axis-tip-quote {
+  display: block;
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.35;
+  margin-bottom: var(--s-2);
+}
+.p02-viz .axis-tip-meta {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  /* a11y: más claro sobre el fondo oscuro del tooltip para mejor contraste */
+  color: var(--line-soft);
+}
+.p02-viz .axis-tip-id { color: var(--accent-soft); font-weight: 600; }
+
+.p02-viz .axis-point:hover .axis-tip,
+.p02-viz .axis-point:focus .axis-tip,
+.p02-viz .axis-point:focus-visible .axis-tip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Etiquetas de los polos */
+.p02-viz .axis-poles {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px dashed var(--line);
+}
+.p02-viz .axis-pole {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.p02-viz .axis-pole.pole-left { color: var(--note); }
+.p02-viz .axis-pole.pole-right { color: var(--accent); }
+
+/* Móvil: más alto para separar puntos, tooltip acotado al ancho */
+@media (max-width: 720px) {
+  .p02-viz { padding: var(--s-5) var(--s-4); }
+  .p02-viz .viz-caption { margin-bottom: var(--s-7); }
+  .p02-viz .axis { margin-left: var(--s-2); margin-right: var(--s-2); }
+  .p02-viz .axis-tip { max-width: 180px; }
+  .p02-viz .axis-poles { font-size: 10px; }
+  /* a11y: amplía el área táctil de cada punto (~40px) sin agrandar el dot */
+  .p02-viz .axis-point { padding: var(--s-3); }
+}

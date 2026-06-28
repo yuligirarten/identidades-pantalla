@@ -162,6 +162,211 @@
 .v02-placeholder .axis-mock .pole-right { color: var(--accent); border-color: var(--accent-soft); }
 
 /* ============================================================
+   Prosa editorial de módulo (borradores P01–P03)
+   ============================================================ */
+.module-prose p {
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  margin-bottom: var(--s-4);
+  max-width: 64ch;
+}
+.module-prose p:last-child { margin-bottom: 0; }
+.module-prose .draft-tag,
+.draft-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: var(--s-4);
+  display: block;
+}
+.module-prose .draft-tag::before,
+.draft-tag::before { content: "✎ "; color: var(--accent); }
+
+/* ============================================================
+   P03 — El algoritmo invisible
+   ============================================================ */
+.p03-lead {
+  margin-bottom: var(--s-6);
+  max-width: 56ch;
+}
+
+/* Anclaje 1 · datos agregados */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-4);
+  margin-bottom: var(--s-7);
+}
+@media (max-width: 720px) {
+  .stat-strip { grid-template-columns: 1fr; }
+}
+
+.stat-card {
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  padding: var(--s-5);
+  display: flex;
+  flex-direction: column;
+}
+.stat-pct {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: var(--fs-display-m);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+}
+.stat-pct .stat-unit {
+  font-size: 0.45em;
+  font-weight: 600;
+  margin-left: 2px;
+  color: var(--ink-2);
+}
+.stat-frac {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: var(--s-3) 0 var(--s-2);
+}
+.stat-title {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: var(--s-3);
+}
+.stat-note {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin-top: auto;
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--line);
+}
+
+/* Anclaje 2 · testimonio hero */
+.p03-hero-card {
+  border-left: 3px solid var(--accent);
+  background: var(--paper-2);
+  padding: var(--s-6);
+  margin: 0 0 var(--s-7);
+}
+.p03-hero-card .hero-quote {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: var(--s-4);
+}
+.p03-hero-card .hero-quote::before { content: "\201C"; color: var(--muted); }
+.p03-hero-card .hero-quote::after { content: "\201D"; color: var(--muted); }
+.p03-hero-card .hero-full {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin-bottom: var(--s-5);
+  max-width: 64ch;
+}
+.p03-hero-card .hero-attribution {
+  padding-top: var(--s-4);
+  border-top: 1px dashed var(--line);
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.p03-hero-card .hero-attribution .id { color: var(--accent); font-weight: 600; }
+.p03-hero-card .hero-attribution .perfil-text {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink-2);
+}
+@media (min-width: 720px) {
+  .p03-hero-card .hero-quote { font-size: 30px; }
+}
+
+/* Anclaje 3 · V-03 diagrama de flujo (opción inmediata, estática) */
+.viz-flow {
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  padding: var(--s-6) var(--s-5);
+  margin: 0 0 var(--s-5);
+}
+.viz-flow-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: var(--s-5);
+}
+.flow-track {
+  display: flex;
+  align-items: stretch;
+  gap: var(--s-2);
+}
+.flow-node {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+}
+.flow-step {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: var(--s-2);
+}
+.flow-title {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: var(--s-2);
+}
+.flow-desc {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.flow-arrow {
+  align-self: center;
+  font-family: var(--mono);
+  color: var(--muted);
+  font-size: 18px;
+  flex: 0 0 auto;
+}
+.flow-loop {
+  margin-top: var(--s-5);
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-align: center;
+}
+@media (max-width: 720px) {
+  .flow-track { flex-direction: column; }
+  .flow-arrow { transform: rotate(90deg); }
+}
+
+/* ============================================================
    P04 — Voces del campo (galería filtrable)
    ============================================================ */
 .p04-intro {
@@ -220,6 +425,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--s-4);
+}
+/* a11y/responsive: una sola columna en móviles estrechos para evitar desborde */
+@media (max-width: 480px) {
+  .gallery { grid-template-columns: 1fr; }
 }
 
 .gallery-card {
@@ -300,6 +509,7 @@
   border-bottom: 0;
 }
 .gallery-card .expand-btn:hover { color: var(--ink); }
+.gallery-card .expand-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .gallery-card .expand-btn::after { content: " ↓"; }
 .gallery-card.is-expanded .expand-btn::after { content: " ↑"; }
 

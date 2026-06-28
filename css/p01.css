@@ -1,0 +1,188 @@
+/* ============================================================
+   P01 — ¿Quién eres en Instagram?
+   Introducción narrativa. Estilos propios del módulo.
+
+   El placeholder del guion reutiliza .placeholder / .placeholder-tag /
+   .placeholder-note (base.css); aquí solo se ajusta el texto interno.
+   Los posts de IG (chrome dibujado con CSS) son clases nuevas.
+   ============================================================ */
+
+/* ---- Placeholder del guion editorial ---- */
+.p01-guion {
+  text-align: left;
+  padding: var(--s-6) var(--s-5);
+}
+.p01-guion .placeholder-tag {
+  text-align: left;
+  margin-bottom: var(--s-2);
+}
+.p01-guion .placeholder-note {
+  text-align: left;
+  margin: 0 0 var(--s-5);
+  max-width: 56ch;
+}
+/* Texto provisional: dimensiona el bloque al tamaño real del guion.
+   Atenuado para que se lea como borrador, no como copy definitivo. */
+.p01-guion-text {
+  padding-top: var(--s-4);
+  border-top: 1px dashed var(--line);
+  max-width: 56ch;
+}
+.p01-guion-text p {
+  font-family: var(--serif);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--ink-2);
+  opacity: 0.7;
+}
+
+/* ---- Bloque de contraste de posts ---- */
+.ig-contrast {
+  margin: var(--s-7) 0 var(--s-5);
+}
+.ig-contrast-tag {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: var(--s-5);
+}
+
+.ig-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-6);
+  align-items: flex-start;
+}
+@media (max-width: 720px) {
+  .ig-grid { flex-direction: column; align-items: stretch; }
+}
+
+/* Cada figura agrupa etiqueta + maqueta + nota */
+.ig-post {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 320px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 720px) {
+  .ig-post { max-width: 100%; }
+}
+
+.ig-post-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-2);
+  margin-bottom: var(--s-3);
+}
+.ig-post.is-square .ig-post-tag { color: var(--accent); }
+.ig-post.is-portrait .ig-post-tag { color: var(--note); }
+
+/* ---- "Chrome" de la tarjeta de IG dibujado con CSS ---- */
+.ig-card {
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+}
+
+/* cabecera: avatar + líneas de usuario + puntos */
+.ig-head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--line-soft);
+}
+.ig-avatar {
+  flex: 0 0 auto;
+  width: var(--s-6);
+  height: var(--s-6);
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  background: var(--paper-2);
+}
+.ig-user-lines {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.ig-line {
+  display: block;
+  height: var(--s-2);
+  border-radius: 100px;
+  background: var(--line-soft);
+}
+.ig-line-user { width: 45%; background: var(--line); }
+.ig-line-meta { width: 30%; height: 6px; }
+.ig-dots {
+  flex: 0 0 auto;
+  font-family: var(--mono);
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* zona de imagen con proporción real (1:1 y 4:5) */
+.ig-media {
+  position: relative;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--paper-2),
+    var(--paper-2) 8px,
+    var(--paper-3) 8px,
+    var(--paper-3) 9px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ig-post.is-square .ig-media { aspect-ratio: 1 / 1; }
+.ig-post.is-portrait .ig-media { aspect-ratio: 4 / 5; }
+.ig-ratio {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: var(--s-1) var(--s-2);
+}
+
+/* pie: líneas de caption */
+.ig-foot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4) var(--s-4);
+  border-top: 1px solid var(--line-soft);
+}
+.ig-line-caption { width: 90%; }
+.ig-line-caption.short { width: 55%; }
+
+/* nota descriptiva de qué irá en cada post */
+.ig-post-note {
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--line);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+/* ---- Nota de consentimiento / anonimización ---- */
+.ig-consent {
+  margin-top: var(--s-6);
+  padding: var(--s-4) var(--s-5);
+  border-left: 3px solid var(--note);
+  background: var(--paper-2);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 64ch;
+}

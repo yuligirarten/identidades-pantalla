@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/modules.css">
+<link rel="stylesheet" href="css/p01.css">
+<link rel="stylesheet" href="css/p02.css">
+<link rel="stylesheet" href="css/p05.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -54,15 +57,8 @@
     <div class="module-inner narrow">
       <p class="module-header"><span class="step-id">P01</span> Introducción narrativa</p>
       <h1 id="p01-title" class="module-title">¿Quién eres en Instagram?</h1>
-      <div class="placeholder with-list">
-        <p class="placeholder-tag">Pendiente · Fase posterior</p>
-        <p class="placeholder-note">Este módulo introducirá al recorrido en segunda persona, antes de pasar al marco conceptual de P02. Falta por producir:</p>
-        <ul class="placeholder-list">
-          <li>Guion en 2ª persona, 4–6 párrafos cortos. Tono editorial, no acusatorio.</li>
-          <li>Dos posts de Instagram ilustrativos en contraste estético (uno curado/aspiracional, uno cotidiano).</li>
-          <li>Consentimiento y anonimización de los posts si provienen de participantes.</li>
-        </ul>
-      </div>
+      <!-- p01.js inyecta el guion (placeholder) y los dos posts de IG en contraste -->
+      <div class="module-body" id="p01-body"></div>
       <div class="module-foot">
         <a class="cta cta-secondary" href="#p00">Inicio</a>
         <a class="cta" href="#p02">Continuar</a>
@@ -75,24 +71,15 @@
       <p class="module-header"><span class="step-id">P02</span> Tensión autenticidad / performance</p>
       <h1 id="p02-title" class="module-title">La vitrina y el espejo</h1>
 
-      <div class="placeholder">
-        <p class="placeholder-tag">Guion conceptual · pendiente de redacción</p>
-        <p class="placeholder-note">Marco breve para la tensión vitrina (lo público, lo performado) / espejo (lo íntimo, lo retenido). Aproximadamente 3 párrafos antes de los testimonios.</p>
-      </div>
+      <!-- p02.js inyecta el marco conceptual (placeholder) -->
+      <div id="p02-intro"></div>
 
       <section class="destacados" id="p02-destacados" aria-label="Testimonios destacados">
         <!-- p02.js inyecta T06 (espejo) y T07 (vitrina) -->
       </section>
 
-      <div class="placeholder v02-placeholder">
-        <p class="placeholder-tag">Visualización V-02 · pendiente</p>
-        <p class="placeholder-note">Eje vitrina/espejo. Cada testimonio de PD II será un punto entre −1 y +1. Hover muestra la cita corta.</p>
-        <div class="axis-mock" aria-hidden="true">
-          <span class="pole-left">Espejo · −1</span>
-          <span>0</span>
-          <span class="pole-right">+1 · Vitrina</span>
-        </div>
-      </div>
+      <!-- p02.js inyecta la visualización V-02 (eje vitrina/espejo, datos reales) -->
+      <div id="p02-viz"></div>
 
       <div class="module-foot">
         <a class="cta cta-secondary" href="#p01">Anterior</a>
@@ -105,15 +92,58 @@
     <div class="module-inner">
       <p class="module-header"><span class="step-id">P03</span> Dimensión algorítmica</p>
       <h1 id="p03-title" class="module-title">El algoritmo invisible</h1>
-      <div class="placeholder with-list">
-        <p class="placeholder-tag">Pendiente · Fase posterior</p>
-        <p class="placeholder-note">Módulo de mayor riesgo de producción. Definir la naturaleza de la visualización antes de codear. Falta:</p>
-        <ul class="placeholder-list">
-          <li>Visualización V-03 (red / flujo del algoritmo). Decisión pendiente: SVG estático vs. animación ligera.</li>
-          <li>Tres stats agregados: % que reconoce el algoritmo, % que se autocensura, % que mide engagement — derivados de los booleanos en data.json (T01, T03, T05–T09; T02 y T04 excluidos por ser perfiles profesionales).</li>
-          <li>Un testimonio hero que humanice los datos (candidatos: T04 o T08 por nombrar el algoritmo explícitamente).</li>
-        </ul>
+
+      <p class="lead p03-lead">Cada publicación entra en un sistema que decide quién la ve. Estas son las huellas del algoritmo en el uso cotidiano de las voces de campo.</p>
+
+      <!-- ANCLAJE 1 · datos agregados (p03.js los calcula desde data.json) -->
+      <div class="stat-strip" id="p03-stats" aria-label="Datos agregados sobre el algoritmo">
+        <!-- p03.js inyecta las tres tarjetas de stats -->
       </div>
+
+      <!-- TEXTO CONCEPTUAL · BORRADOR editorial (autora a revisar) -->
+      <div class="p03-text module-prose">
+        <p class="draft-tag">Borrador editorial · sujeto a revisión</p>
+        <p>El algoritmo no se ve, pero está. Cada vez que publicas, un sistema decide quién lo verá y quién no: lee señales —el formato, la hora, las primeras reacciones— y reparte tu contenido de forma desigual. No es un reparto neutral.</p>
+        <p>Tiende a premiar lo que retiene la atención y a dejar en segundo plano lo que se sale de la norma. Con el tiempo, quien publica aprende a anticiparlo: ajusta el encuadre, el horario, el tono, a veces sin darse cuenta de que está negociando con una máquina para adivinar qué va a premiar la plataforma.</p>
+        <p>Esa negociación deja huellas en cómo te presentas. Los datos de arriba las hacen visibles: hay quienes nombran el algoritmo con claridad, quienes moderan o retienen contenido por su causa, y quienes prefieren no publicar. El algoritmo invisible termina moldeando, en silencio, la identidad que se muestra.</p>
+      </div>
+
+      <!-- ANCLAJE 2 · testimonio hero (p03.js inyecta T08) -->
+      <div id="p03-hero">
+        <!-- p03.js inyecta la cita destacada -->
+      </div>
+
+      <!-- ANCLAJE 3 · V-03 · opción inmediata: diagrama de flujo estático.
+           TODO: enriquecer (versión animada / interactiva) en fase posterior. -->
+      <figure class="viz-flow" aria-label="Diagrama: el ciclo del algoritmo">
+        <figcaption class="viz-flow-tag">Visualización V-03 · el ciclo del algoritmo</figcaption>
+        <div class="flow-track">
+          <div class="flow-node">
+            <span class="flow-step">01</span>
+            <p class="flow-title">Publicas</p>
+            <p class="flow-desc">Subes una imagen, un texto, un momento.</p>
+          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="flow-node">
+            <span class="flow-step">02</span>
+            <p class="flow-title">El algoritmo evalúa</p>
+            <p class="flow-desc">Lee señales: formato, horario, interacción temprana.</p>
+          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="flow-node">
+            <span class="flow-step">03</span>
+            <p class="flow-title">Distribuye desigual</p>
+            <p class="flow-desc">Premia lo que retiene atención; invisibiliza lo que se sale de la norma.</p>
+          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="flow-node">
+            <span class="flow-step">04</span>
+            <p class="flow-title">Ajustas lo que muestras</p>
+            <p class="flow-desc">Modificas qué y cómo publicas para no desaparecer.</p>
+          </div>
+        </div>
+        <p class="flow-loop" aria-hidden="true">↺ el ciclo se repite en cada publicación</p>
+      </figure>
       <div class="module-foot">
         <a class="cta cta-secondary" href="#p02">Anterior</a>
         <a class="cta" href="#p04">Continuar</a>
@@ -148,16 +178,8 @@
     <div class="module-inner narrow">
       <p class="module-header"><span class="step-id">P05</span> Autocuestionario reflexivo</p>
       <h1 id="p05-title" class="module-title">¿Y tú cómo te presentas?</h1>
-      <div class="placeholder with-list">
-        <p class="placeholder-tag">Pendiente · Fase posterior</p>
-        <p class="placeholder-note">Pieza más interactiva del recorrido. La lógica respuestas → perfil resultado debe definirse antes de codear. Falta:</p>
-        <ul class="placeholder-list">
-          <li>De 5 a 7 preguntas reflexivas (no diagnósticas) con opciones tipo escala o múltiple selección.</li>
-          <li>Estructura <code>autocuestionario.preguntas</code> y <code>autocuestionario.perfiles_resultado</code> de data.json — ahora vacías.</li>
-          <li>Lectura interpretativa según respuestas. Sin juicio normativo.</li>
-          <li>Mecanismo de compartir resultado (opcional, decidir si se publica).</li>
-        </ul>
-      </div>
+      <!-- p05.js inyecta el mock no interactivo del autocuestionario -->
+      <div class="module-body" id="p05-body"></div>
       <div class="module-foot">
         <a class="cta cta-secondary" href="#p04">Anterior</a>
         <a class="cta" href="#p06">Continuar</a>
@@ -229,7 +251,10 @@
 
 <script src="js/data.js"></script>
 <script src="js/router.js"></script>
+<script src="js/modules/p01.js"></script>
 <script src="js/modules/p02.js"></script>
+<script src="js/modules/p03.js"></script>
 <script src="js/modules/p04.js"></script>
+<script src="js/modules/p05.js"></script>
 </body>
 </html>
