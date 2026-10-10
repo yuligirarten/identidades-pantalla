@@ -42,16 +42,16 @@
       tag: 'Post curado / aspiracional',
       ratioClass: 'is-square',
       img: 'img/p01-curado.jpg',
-      alt: 'Joven con toga y birrete en su ceremonia de graduación, sonriendo de frente a la cámara.',
-      nota: 'Imagen producida: encuadre cuidado, luz limpia, un logro pensado para ser visto. El yo que se quiere proyectar.'
+      alt: 'Joven con vestido rojo posando de pie entre vegetación en un bosque con neblina.',
+      nota: 'Imagen producida: locación elegida, vestuario y luz pensados, pose frente a la cámara. El yo que se quiere proyectar.'
     },
     {
       modo: 'cotidiano',
       tag: 'Post cotidiano / espontáneo',
       ratioClass: 'is-portrait',
       img: 'img/p01-cotidiano.jpg',
-      alt: 'Mesa de terraza con tres cafés y una mano sosteniendo un celular; al fondo, montañas al atardecer.',
-      nota: 'Imagen captada al paso: sin pose ni rostro, casi descartable. El yo que se filtra cuando baja la guardia.'
+      alt: 'Selfie con el brazo extendido junto a un perro que saca la lengua, bajo un cielo azul.',
+      nota: 'Imagen captada al paso: brazo extendido, encuadre torcido, sin producción. El yo que se filtra cuando baja la guardia.'
     }
   ];
 
