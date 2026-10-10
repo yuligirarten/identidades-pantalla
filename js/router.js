@@ -42,6 +42,9 @@
     if (typeof fn === 'function') {
       try { fn(); } catch (e) { console.error('[router] init error for ' + id, e); }
     }
+
+    // Aviso para capas visuales (js/immersive.js): el capítulo ya está pintado.
+    document.dispatchEvent(new CustomEvent('iep:chapter', { detail: id }));
   }
 
   function showBootError(err) {

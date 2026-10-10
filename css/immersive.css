@@ -1,0 +1,637 @@
+/* ============================================================
+   CAPA INMERSIVA — dirección visual v2
+   Referencias: creative.inc · kodeimmersive.com · grail-app.com
+
+   - Cada módulo es un "capítulo" con su propia paleta. Como todos
+     los componentes leen tokens (--paper, --ink, --accent…), basta
+     con redefinirlos por capítulo para re-pintar todo el módulo.
+   - Tipografía display gigante (Instrument Serif) + etiquetas mono
+     entre corchetes.
+   - Movimiento: cortina entre capítulos, aparición al hacer scroll
+     y lectura palabra por palabra (js/immersive.js).
+   Se carga al final: sobreescribe base.css / modules.css sin tocarlos.
+   ============================================================ */
+
+:root {
+  --display: 'Instrument Serif', 'Fraunces', Georgia, serif;
+  --header-h: 64px;
+  --gutter: clamp(16px, 4vw, 56px);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Paletas de capítulo */
+  --c-cream: #f3f2e9;
+  --c-night: #0e0d0c;
+  --c-orange: #ff5a1f;
+  --c-lilac: #e8d2f5;
+}
+
+/* ---------- Temas por capítulo (tokens) ---------- */
+.theme-cream,
+.module-p01,
+.module-p02 {
+  --paper: #f3f2e9;
+  --paper-2: #e9e7da;
+  --paper-3: #dcd9c8;
+  --ink: #1c1b17;
+  --ink-2: #45423b;
+  --muted: #8b877c;
+  --line: #b9b4a5;
+  --line-soft: #d9d5c6;
+  --accent: #ff5a1f;
+  --accent-soft: #ffd2bf;
+  --note: #3d6b52;
+  --note-soft: #c6dccd;
+}
+
+.theme-night,
+.module-p00,
+.module-p04,
+.module-p06 {
+  --paper: #0e0d0c;
+  --paper-2: #1a1816;
+  --paper-3: #26231f;
+  --ink: #f3efe6;
+  --ink-2: #cfc8bb;
+  --muted: #8a847a;
+  --line: #4a4540;
+  --line-soft: #2c2925;
+  --accent: #ff5a1f;
+  --accent-soft: #4a2416;
+  --note: #8fc4a5;
+  --note-soft: #24352b;
+}
+
+.theme-orange,
+.module-p03 {
+  --paper: #ff5a1f;
+  --paper-2: #ff7a47;
+  --paper-3: #e84a12;
+  --ink: #140f0b;
+  --ink-2: #2e1b10;
+  --muted: #6b2a10;
+  --line: #9a3a14;
+  --line-soft: #ff7f50;
+  --accent: #140f0b;
+  --accent-soft: #ffb08f;
+  --note: #140f0b;
+  --note-soft: #ff9a72;
+}
+
+.theme-lilac,
+.module-p05 {
+  --paper: #e8d2f5;
+  --paper-2: #dcc0ee;
+  --paper-3: #cfaee6;
+  --ink: #1d1322;
+  --ink-2: #3f2d48;
+  --muted: #7a6585;
+  --line: #a88cb8;
+  --line-soft: #d2b8e3;
+  --accent: #6c2bb0;
+  --accent-soft: #cfa9ef;
+  --note: #2f6b54;
+  --note-soft: #b9dccb;
+}
+
+/* El fondo del documento sigue al capítulo activo.
+   Sin scroll suave: el router vuelve arriba al cambiar de capítulo. */
+html { scroll-behavior: auto; }
+html, body { background: var(--c-night); }
+body { transition: background-color 600ms var(--ease-out); }
+body[data-chapter="p01"], body[data-chapter="p02"] { background: var(--c-cream); }
+body[data-chapter="p03"] { background: var(--c-orange); }
+body[data-chapter="p05"] { background: var(--c-lilac); }
+
+.module {
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  padding: calc(var(--header-h) + clamp(48px, 9vh, 120px)) var(--gutter) clamp(64px, 12vh, 160px);
+  position: relative;
+  overflow: hidden;
+}
+.module.is-active { animation: none; }
+::selection { background: var(--accent); color: var(--paper); }
+
+/* ============================================================
+   CABECERA — fija, se invierte sobre cualquier fondo
+   ============================================================ */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--header-h);
+  padding: 0 var(--gutter);
+  background: transparent;
+  border: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  mix-blend-mode: difference;
+  color: #fff;
+  flex-wrap: nowrap;
+}
+.site-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  line-height: 1.25;
+  max-width: 13ch;
+  color: #fff;
+}
+.site-title:hover { color: #fff; opacity: 0.7; }
+
+.nav-steps { gap: 2px; align-items: center; }
+.nav-steps a {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 11px;
+  padding: 6px 10px;
+  border: 0;
+}
+.nav-steps a:hover { color: #fff; border: 0; }
+.nav-steps a[aria-current="step"] {
+  color: #fff;
+  background: transparent;
+  border: 0;
+}
+.nav-steps a[aria-current="step"]::before { content: "[ "; }
+.nav-steps a[aria-current="step"]::after { content: " ]"; }
+
+.chapter-counter {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* Barra de progreso del recorrido */
+.journey-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: #fff;
+  mix-blend-mode: difference;
+  z-index: 60;
+  transition: transform 200ms linear;
+}
+
+@media (max-width: 720px) {
+  :root { --header-h: 92px; }
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+  }
+  .site-title { max-width: none; }
+  .chapter-counter { display: none; }
+  .nav-steps a { padding: 4px 6px; font-size: 11px; }
+  .nav-steps a[aria-current="step"]::before { content: "["; }
+  .nav-steps a[aria-current="step"]::after { content: "]"; }
+}
+
+/* ============================================================
+   TIPOGRAFÍA DE CAPÍTULO
+   ============================================================ */
+.module-inner { position: relative; z-index: 1; }
+
+.module-header {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--ink-2);
+  margin-bottom: clamp(16px, 3vh, 32px);
+}
+.module-header::before { content: none; }
+.module-header .step-id { color: var(--accent); }
+.module-header .step-id::before { content: "[ "; }
+.module-header .step-id::after { content: " ]"; }
+
+/* Título a sangre completa, gigante */
+.module-title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(52px, 10.5vw, 168px);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  margin-bottom: clamp(40px, 8vh, 96px);
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 var(--gutter);
+  text-wrap: balance;
+}
+.module-title em { font-style: italic; color: var(--accent); }
+
+/* Número gigante de fondo (lo inyecta immersive.js) */
+.chapter-num {
+  position: absolute;
+  right: calc(var(--gutter) * -0.5);
+  top: calc(var(--header-h) + 2vh);
+  font-family: var(--display);
+  font-size: clamp(200px, 38vw, 640px);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line);
+  opacity: 0.55;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+.lead {
+  font-size: clamp(20px, 2.2vw, 30px);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  max-width: 30ch;
+}
+
+/* Prosa: más grande, menos texto por línea */
+.module-prose p,
+.p01-guion-text p,
+.p03-text p {
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   BOTONES — píldoras tipo Grail
+   ============================================================ */
+.cta {
+  border-radius: 100px;
+  padding: 14px 26px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  transition: transform 300ms var(--ease-out), background 200ms, color 200ms;
+}
+.cta:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper);
+  transform: translateY(-2px);
+}
+.module-p03 .cta:hover { background: var(--paper); color: var(--ink); border-color: var(--ink); }
+.cta-secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.cta-secondary:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+.module-foot {
+  border-top: 1px solid var(--line-soft);
+  margin-top: clamp(64px, 12vh, 140px);
+}
+
+/* ============================================================
+   P00 — PORTADA INMERSIVA
+   ============================================================ */
+.module-p00 {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+.module-p00.is-active {
+  display: flex;
+  align-items: center;
+}
+.module-p00 { padding-top: var(--header-h); padding-bottom: 0; }
+.module-p00 .module-inner {
+  max-width: none;
+  width: 100%;
+  min-height: calc(100svh - var(--header-h));
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+}
+.module-p00 .module-inner > * { pointer-events: auto; }
+.module-p00 .kicker {
+  color: var(--ink-2);
+  letter-spacing: 0.22em;
+}
+.module-p00 .kicker::before { content: "[ "; }
+.module-p00 .kicker::after { content: " ]"; }
+
+.display-question {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(56px, 11.5vw, 200px);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  max-width: 11ch;
+  margin: 0 auto clamp(20px, 4vh, 40px);
+  text-wrap: balance;
+}
+.display-question em { font-style: italic; color: var(--accent); }
+
+.module-p00 .lead {
+  margin: 0 auto clamp(24px, 5vh, 48px);
+  max-width: 34ch;
+  font-size: clamp(16px, 1.4vw, 19px);
+  color: var(--ink-2);
+}
+.module-p00 .module-foot { justify-content: center; margin-top: 0; border: 0; }
+
+.p00-signature {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(16px, 3vh, 32px);
+  margin: 0;
+  padding: 0 var(--gutter);
+  border: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+
+/* Tarjetas flotantes (las crea immersive.js) */
+.cover-cloud {
+  position: absolute;
+  inset: 0;
+  perspective: 1200px;
+  pointer-events: none;
+  z-index: 0;
+}
+.cover-card {
+  position: absolute;
+  width: var(--w, 170px);
+  transform-style: preserve-3d;
+  will-change: transform;
+  opacity: 0;
+  animation: card-in 1.2s var(--ease-out) forwards;
+  animation-delay: var(--d, 0s);
+}
+.cover-card-inner {
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotateZ(var(--rz, 0deg));
+  animation: card-float var(--f, 7s) ease-in-out infinite alternate;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+}
+@keyframes card-in {
+  from { opacity: 0; translate: 0 60px; }
+  to { opacity: var(--o, 1); translate: 0 0; }
+}
+@keyframes card-float {
+  from { translate: 0 -10px; }
+  to { translate: 0 12px; }
+}
+
+/* tarjeta-foto: un post de IG mínimo */
+.cc-photo { background: #f3f2e9; padding: 8px 8px 10px; }
+.cc-photo img { border-radius: 8px; aspect-ratio: 4 / 5; object-fit: cover; width: 100%; }
+.cc-photo .cc-bar {
+  display: flex; gap: 6px; align-items: center; padding: 0 2px 8px;
+}
+.cc-photo .cc-dot { width: 16px; height: 16px; border-radius: 50%; background: #d9d5c6; }
+.cc-photo .cc-line { height: 5px; width: 46%; border-radius: 9px; background: #d9d5c6; }
+
+/* tarjeta-texto: microcopia de la interfaz de Instagram */
+.cc-note {
+  background: #f3f2e9;
+  color: #1c1b17;
+  padding: 14px 16px 16px;
+  font-family: var(--sans);
+}
+.cc-note .cc-kicker {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8b877c;
+  margin-bottom: 8px;
+}
+.cc-note .cc-text {
+  font-family: var(--display);
+  font-size: 24px;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+.cc-note.is-orange { background: var(--c-orange); }
+.cc-note.is-orange .cc-kicker { color: #6b2a10; }
+.cc-note.is-lilac { background: var(--c-lilac); }
+.cc-note.is-lilac .cc-kicker { color: #7a6585; }
+
+/* tile de patrón (guiño pixelado de Grail) */
+.cc-tile {
+  aspect-ratio: 1;
+  background:
+    conic-gradient(from 90deg at 50% 50%, var(--t1) 0 25%, var(--t2) 0 50%, var(--t1) 0 75%, var(--t2) 0) 0 0 / 25% 25%;
+}
+
+@media (max-width: 720px) {
+  .cover-card { --w: 104px !important; }
+  .cover-card-inner { opacity: 0.6; }
+  .cover-card.is-secondary { display: none; }
+  .cc-note .cc-text { font-size: 17px; }
+  .p00-signature { justify-content: center; text-align: center; }
+}
+
+/* ============================================================
+   P02 — VITRINA (claro) / ESPEJO (oscuro)
+   El espejo invierte sus tokens dentro del capítulo claro.
+   ============================================================ */
+.module-p02 .destacado-card:has(.eje-label.is-espejo),
+.module-p02 .p02-foto.is-espejo {
+  --paper: #0e0d0c;
+  --paper-2: #1a1816;
+  --ink: #f3efe6;
+  --ink-2: #cfc8bb;
+  --muted: #8a847a;
+  --line: #4a4540;
+  --note: #8fc4a5;
+}
+.module-p02 .p02-foto.is-espejo {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 16px;
+  border-radius: 16px;
+}
+.module-p02 .p02-foto.is-vitrina {
+  padding: 16px;
+  border-radius: 16px;
+  background: #fff;
+}
+.p02-foto img { border-radius: 10px; border: 0 !important; }
+.p02-foto .eje-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.p02-foto .eje-label::before { content: "[ "; }
+.p02-foto .eje-label::after { content: " ]"; }
+.p02-foto.is-vitrina .eje-label { color: var(--accent); }
+.p02-foto.is-espejo .eje-label { color: var(--note); }
+.p02-par { max-width: 720px !important; }
+
+.destacado-card {
+  border-radius: 18px;
+  border: 1px solid var(--line-soft);
+  padding: clamp(24px, 3vw, 40px);
+}
+.destacado-card .quote {
+  font-family: var(--display);
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.05;
+}
+.p02-viz { border-radius: 18px; border-width: 1px; }
+
+/* ============================================================
+   P03 — NARANJA, cifras gigantes
+   ============================================================ */
+.stat-card {
+  border: 0;
+  border-top: 2px solid var(--ink);
+  background: transparent;
+  padding: var(--s-5) 0 0;
+}
+.stat-pct {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(96px, 13vw, 200px);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+.stat-strip { gap: clamp(16px, 3vw, 48px); }
+.p03-hero-card {
+  background: var(--ink);
+  color: var(--paper);
+  border: 0;
+  border-radius: 18px;
+  --ink-2: #ffd9c9;
+  --muted: #ff9a72;
+  --line: #5a2a16;
+  --accent: #ff5a1f;
+}
+.p03-hero-card .hero-quote {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(30px, 3.6vw, 52px);
+  line-height: 1.02;
+  color: var(--paper);
+}
+.viz-flow, .flow-node { border-color: var(--ink) !important; }
+
+/* ============================================================
+   P04 · P05 · P06 — pulido de tarjetas
+   ============================================================ */
+.gallery-card { border-radius: 18px; border-width: 1px; }
+.pill { border-radius: 100px; }
+.q-card, .q-result { border-radius: 22px; }
+.q-option { border-radius: 14px; }
+.ig-card { border-radius: 16px; overflow: hidden; border-width: 1px; }
+.ig-consent { border-radius: 0 12px 12px 0; }
+.credits h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 40px);
+}
+
+/* ============================================================
+   CORTINA ENTRE CAPÍTULOS
+   ============================================================ */
+.chapter-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--gutter);
+  background: var(--paper);
+  color: var(--ink);
+  transform: translateY(101%);
+  pointer-events: none;
+}
+.chapter-curtain.is-in {
+  transform: translateY(0);
+  transition: transform 520ms var(--ease-curtain);
+}
+.chapter-curtain.is-out {
+  transform: translateY(-101%);
+  transition: transform 620ms var(--ease-curtain);
+}
+.chapter-curtain .cc-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  margin-bottom: 12px;
+}
+.chapter-curtain .cc-title {
+  font-family: var(--display);
+  font-size: clamp(56px, 12vw, 200px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+/* ============================================================
+   APARICIÓN AL HACER SCROLL + LECTURA PALABRA POR PALABRA
+   Solo se ocultan cosas si JS está activo y no hay reduce-motion.
+   ============================================================ */
+.imm .rv {
+  opacity: 0;
+  translate: 0 40px;
+  transition: opacity 900ms var(--ease-out), translate 900ms var(--ease-out);
+  transition-delay: var(--rv-d, 0ms);
+}
+.imm .rv.in { opacity: 1; translate: 0 0; }
+
+.imm .wr .w {
+  opacity: 0.16;
+  transition: opacity 260ms linear;
+}
+.imm .wr .w.on { opacity: 1; }
+
+/* El título entra línea por línea */
+.imm .module.is-active .module-title,
+.imm .module.is-active .display-question {
+  animation: title-in 1100ms var(--ease-out) both;
+  animation-delay: 120ms;
+}
+@keyframes title-in {
+  from { opacity: 0; clip-path: inset(-40% -5% 100% -5%); translate: 0 30px; }
+  to { opacity: 1; clip-path: inset(-40% -5% -40% -5%); translate: 0 0; }
+}
+
+/* Entrada escalonada de la portada */
+.imm .module-p00.is-active .kicker,
+.imm .module-p00.is-active .lead,
+.imm .module-p00.is-active .module-foot,
+.imm .module-p00.is-active .p00-signature {
+  animation: cover-in 900ms var(--ease-out) both;
+}
+.imm .module-p00.is-active .kicker { animation-delay: 60ms; }
+.imm .module-p00.is-active .lead { animation-delay: 500ms; }
+.imm .module-p00.is-active .module-foot { animation-delay: 650ms; }
+.imm .module-p00.is-active .p00-signature { animation-delay: 800ms; }
+@keyframes cover-in {
+  from { opacity: 0; translate: 0 24px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .imm .module-p00.is-active * { animation: none !important; }
+  .imm .rv, .imm .wr .w { opacity: 1 !important; translate: none !important; transition: none !important; }
+  .cover-card, .cover-card-inner { animation: none !important; opacity: var(--o, 1); }
+  .imm .module.is-active .module-title,
+  .imm .module.is-active .display-question { animation: none; }
+  .chapter-curtain { display: none; }
+  body { transition: none; }
+}
