@@ -65,7 +65,8 @@
           '<p class="stat-note">' + escape(s.nota) + '</p>' +
         '</div>'
       );
-    }).join('');
+    }).join('') +
+      '<p class="stat-base">La base cambia entre tarjetas porque cada porcentaje se calcula solo sobre las voces en las que esa categoría aplica.</p>';
   }
 
   /* ------------------------------------------------------------------

@@ -230,6 +230,16 @@ p + p { margin-top: var(--s-3); }
 }
 .cta-secondary:hover::before { transform: translateX(-3px); }
 
+/* Móvil: botones de avance más grandes y fáciles de tocar (prueba con usuarias) */
+@media (max-width: 720px) {
+  .cta {
+    min-height: 48px;
+    padding: var(--s-4) var(--s-5);
+    font-size: 13px;
+    justify-content: center;
+  }
+}
+
 .placeholder {
   border: 1.5px dashed var(--line);
   background: repeating-linear-gradient(135deg, transparent, transparent 8px, rgba(184,177,163,0.12) 8px, rgba(184,177,163,0.12) 9px);

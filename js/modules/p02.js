@@ -33,13 +33,49 @@
     );
   }
 
-  /* BORRADOR editorial (autora a revisar): marco conceptual vitrina/espejo,
+  /* Ancla visual de la metáfora: dos fotografías reales de Instagram,
+     usadas con autorización y sin datos identificables de sus autoras. */
+  const PAR = [
+    {
+      cls: 'is-vitrina',
+      label: 'Vitrina',
+      img: 'img/p02-vitrina.jpg',
+      alt: 'Joven posando de frente en la playa con luz dorada del atardecer.',
+      nota: 'Lo que se elige mostrar: pose, luz y escenario pensados para ser mirados.'
+    },
+    {
+      cls: 'is-espejo',
+      label: 'Espejo',
+      img: 'img/p02-espejo.jpg',
+      alt: 'Cuarto en penumbra con una pequeña ventana iluminada por donde se asoma una montaña.',
+      nota: 'Lo que se mira sin exhibirse: un instante íntimo, sin rostro ni pose.'
+    }
+  ];
+
+  function renderPar() {
+    return (
+      '<div class="p02-par">' +
+        PAR.map(function (f) {
+          return (
+            '<figure class="p02-foto ' + f.cls + '">' +
+              '<p class="eje-label ' + f.cls + '">' + f.label + '</p>' +
+              '<img src="' + f.img + '" alt="' + escape(f.alt) + '" loading="lazy" decoding="async">' +
+              '<figcaption>' + escape(f.nota) +
+                '<span class="img-credit">Fotografía de Instagram usada con autorización de su autora.</span>' +
+              '</figcaption>' +
+            '</figure>'
+          );
+        }).join('') +
+      '</div>'
+    );
+  }
+
+  /* Marco conceptual vitrina/espejo,
      ~3 párrafos, alineado al protocolo. Antecede a los testimonios y al eje. */
   function renderIntro(box) {
     if (box.dataset.rendered) return;
     box.className = 'p02-intro module-prose';
     box.innerHTML =
-      '<p class="draft-tag">Borrador editorial · sujeto a revisión</p>' +
       '<p>Toda cuenta de Instagram funciona a la vez como una <strong>vitrina</strong> y como un <strong>espejo</strong>. ' +
         'Vitrina: lo que eliges mostrar, ordenado para que alguien lo mire —la mejor foto, el logro, la versión presentable ' +
         'de tu día—. Espejo: lo que miras sin enseñar, lo que guardas, los borradores que nunca llegan a publicarse. ' +
@@ -50,7 +86,8 @@
         'publicar para no exponerse.</p>' +
       '<p>Este módulo no te pide elegir un lado. Lo que muestran las voces del campo es que cada quien negocia esa tensión a ' +
         'su manera, y que el resultado puede ubicarse en algún punto del recorrido entre el espejo y la vitrina. Las citas y ' +
-        'el eje que siguen son ese mapa.</p>';
+        'el eje que siguen son ese mapa.</p>' +
+      renderPar();
     box.dataset.rendered = '1';
   }
 

@@ -204,6 +204,14 @@
   .stat-strip { grid-template-columns: 1fr; }
 }
 
+.stat-base {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+  font-style: italic;
+}
+
 .stat-card {
   border: 1.5px solid var(--ink);
   background: var(--paper);

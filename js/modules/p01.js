@@ -33,24 +33,25 @@
     'Este recorrido parte de esa tensión cotidiana. Antes de mirar las voces del campo, mírate a ti: ¿quién eres cuando eres tú en Instagram?'
   ];
 
-  /* TODO (autora): definir el contenido real de cada post de referencia.
-     Por ahora son placeholders DIMENSIONADOS que simulan forma y tamaño
-     de un post de IG (chrome: avatar, usuario, imagen con proporción,
-     caption). Sirven para contrastar lo curado vs. lo espontáneo. */
+  /* Posts de referencia: fotografías reales de Instagram usadas con
+     autorización de sus autoras. Por decisión de anonimato NO se muestran
+     usuario, nombre ni caption original: solo la imagen. */
   const POSTS = [
     {
       modo: 'curado',
       tag: 'Post curado / aspiracional',
       ratioClass: 'is-square',
-      ratioLabel: '1:1 · cuadrado',
-      nota: 'Aquí irá un ejemplo de imagen muy producida: encuadre cuidado, luz editada, escena pensada para ser vista. El yo que se quiere proyectar.'
+      img: 'img/p01-curado.jpg',
+      alt: 'Joven con toga y birrete en su ceremonia de graduación, sonriendo de frente a la cámara.',
+      nota: 'Imagen producida: encuadre cuidado, luz limpia, un logro pensado para ser visto. El yo que se quiere proyectar.'
     },
     {
       modo: 'cotidiano',
       tag: 'Post cotidiano / espontáneo',
       ratioClass: 'is-portrait',
-      ratioLabel: '4:5 · vertical',
-      nota: 'Aquí irá un ejemplo de imagen casual: sin retoque, captada al paso, casi descartable. El yo que se filtra cuando baja la guardia.'
+      img: 'img/p01-cotidiano.jpg',
+      alt: 'Mesa de terraza con tres cafés y una mano sosteniendo un celular; al fondo, montañas al atardecer.',
+      nota: 'Imagen captada al paso: sin pose ni rostro, casi descartable. El yo que se filtra cuando baja la guardia.'
     }
   ];
 
@@ -61,7 +62,6 @@
 
     return (
       '<div class="p01-guion module-prose">' +
-        '<p class="draft-tag">Borrador editorial · sujeto a revisión</p>' +
         '<div class="p01-guion-text">' + parrafos + '</div>' +
       '</div>'
     );
@@ -81,9 +81,9 @@
             '</span>' +
             '<span class="ig-dots" aria-hidden="true">···</span>' +
           '</header>' +
-          /* zona de imagen con su proporción real */
-          '<div class="ig-media" aria-hidden="true">' +
-            '<span class="ig-ratio">' + escape(p.ratioLabel) + '</span>' +
+          /* imagen real con su proporción (1:1 o 4:5) */
+          '<div class="ig-media">' +
+            '<img src="' + escape(p.img) + '" alt="' + escape(p.alt) + '" loading="lazy" decoding="async">' +
           '</div>' +
           /* chrome inferior: línea de caption */
           '<footer class="ig-foot" aria-hidden="true">' +
@@ -91,7 +91,9 @@
             '<span class="ig-line ig-line-caption short"></span>' +
           '</footer>' +
         '</div>' +
-        '<figcaption class="ig-post-note">' + escape(p.nota) + '</figcaption>' +
+        '<figcaption class="ig-post-note">' + escape(p.nota) +
+          '<span class="img-credit">Fotografía de Instagram usada con autorización de su autora.</span>' +
+        '</figcaption>' +
       '</figure>'
     );
   }
@@ -103,11 +105,10 @@
         '<p class="ig-contrast-tag">Dos publicaciones, dos versiones del yo</p>' +
         '<div class="ig-grid">' + cards + '</div>' +
         '<p class="ig-consent">' +
-          'Nota de consentimiento: los posts que provengan de participantes ' +
-          'se publican solo con su autorización expresa y anonimizados ' +
-          '(rostros, nombres de usuario y datos identificables difuminados o ' +
-          'sustituidos). Mientras tanto, estas piezas son maquetas sin ' +
-          'contenido real.' +
+          'Nota de consentimiento: ambas imágenes provienen de cuentas reales y se ' +
+          'publican con autorización expresa de sus autoras. Para proteger su ' +
+          'identidad se omiten usuario, nombre y texto original de la publicación. ' +
+          'Las autoras de estas imágenes no forman parte del corpus de testimonios.' +
         '</p>' +
       '</div>'
     );
