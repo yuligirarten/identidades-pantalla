@@ -14,7 +14,7 @@
 
   const MODULES = ['p00', 'p01', 'p02', 'p03', 'p04', 'p05', 'p06'];
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const THEME_COLOR = { p00: '#0e0d0c', p01: '#f3f2e9', p02: '#f3f2e9', p03: '#ff5a1f', p04: '#0e0d0c', p05: '#e8d2f5', p06: '#0e0d0c' };
+  const THEME_COLOR = { p00: '#0e0d0c', p01: '#f3f2e9', p02: '#f3f2e9', p03: '#0f8a5f', p04: '#0e0d0c', p05: '#e8d2f5', p06: '#0e0d0c' };
 
   if (!REDUCED) document.documentElement.classList.add('imm');
 
@@ -201,9 +201,9 @@
     { t: 'photo', src: 'img/p01-curado.jpg', x: 6, y: 16, w: 190, rz: -8, ry: 14, d: 0.1 },
     { t: 'note', k: 'Borrador', txt: 'Guardado hace 3 semanas. Sin publicar.', x: 74, y: 12, w: 210, rz: 6, ry: -16, d: 0.25, c: 'is-lilac' },
     { t: 'photo', src: 'img/p02-espejo.jpg', x: 80, y: 56, w: 170, rz: 9, ry: -20, d: 0.4 },
-    { t: 'note', k: 'Editar', txt: '¿Quitar la foto del perfil?', x: 3, y: 64, w: 200, rz: -5, ry: 18, d: 0.55, c: 'is-orange', sec: true },
+    { t: 'note', k: 'Editar', txt: '¿Quitar la foto del perfil?', x: 3, y: 64, w: 200, rz: -5, ry: 18, d: 0.55, c: 'is-emerald', sec: true },
     { t: 'photo', src: 'img/p01-cotidiano.jpg', x: 18, y: 72, w: 150, rz: 4, ry: 10, d: 0.7, o: 0.85, sec: true },
-    { t: 'tile', x: 66, y: 78, w: 92, rz: -10, ry: -8, d: 0.8, t1: '#ff5a1f', t2: '#e8d2f5', sec: true },
+    { t: 'tile', x: 66, y: 78, w: 92, rz: -10, ry: -8, d: 0.8, t1: '#0f8a5f', t2: '#e8d2f5', sec: true },
     { t: 'note', k: 'Visto por', txt: '1 204 cuentas que no te siguen', x: 58, y: 4, w: 180, rz: -4, ry: -10, d: 0.9, o: 0.9, sec: true },
     { t: 'tile', x: 26, y: 6, w: 76, rz: 12, ry: 14, d: 1.0, t1: '#f3f2e9', t2: '#1c1b17', sec: true },
     { t: 'photo', src: 'img/p02-vitrina.jpg', x: 86, y: 30, w: 130, rz: -6, ry: -22, d: 1.1, o: 0.8, sec: true }
