@@ -42,8 +42,8 @@
       tag: 'Post curado / aspiracional',
       ratioClass: 'is-square',
       img: 'img/p01-curado.jpg',
-      alt: 'Joven con vestido rojo posando de pie entre vegetación en un bosque con neblina.',
-      nota: 'Imagen producida: locación elegida, vestuario y luz pensados, pose frente a la cámara. El yo que se quiere proyectar.'
+      alt: 'Retrato con flash de una joven sonriendo, recargada en un mueble junto a una planta y un póster.',
+      nota: 'Imagen producida: flash, estética de película, pose frente a la cámara. El yo que se quiere proyectar.'
     },
     {
       modo: 'cotidiano',
@@ -102,13 +102,13 @@
     var cards = POSTS.map(renderPost).join('');
     return (
       '<div class="ig-contrast">' +
-        '<p class="ig-contrast-tag">Dos publicaciones, dos versiones del yo</p>' +
+        '<p class="ig-contrast-tag">Una misma persona, dos versiones del yo</p>' +
         '<div class="ig-grid">' + cards + '</div>' +
         '<p class="ig-consent">' +
-          'Nota de consentimiento: ambas imágenes provienen de cuentas reales y se ' +
-          'publican con autorización expresa de sus autoras. Para proteger su ' +
+          'Nota de consentimiento: ambas imágenes provienen de la cuenta real de una ' +
+          'misma persona y se publican con su autorización expresa. Para proteger su ' +
           'identidad se omiten usuario, nombre y texto original de la publicación. ' +
-          'Las autoras de estas imágenes no forman parte del corpus de testimonios.' +
+          'La autora de estas imágenes no forma parte del corpus de testimonios.' +
         '</p>' +
       '</div>'
     );
