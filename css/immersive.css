@@ -20,7 +20,9 @@
 
   --c-cream: #f3f2e9;
   --c-night: #0e0d0c;
-  --c-emerald: #0f8a5f;
+  /* a11y: esmeralda ligeramente más profundo (#0f8a5f → #0e7f57) para
+     que el texto blanco pase AA (4.36 → 5.01:1) */
+  --c-emerald: #0e7f57;
   --c-lilac: #e8d2f5;
 }
 
@@ -39,6 +41,7 @@
   --accent-soft: #c4e8d6;
   --note: #6129a0;
   --note-soft: #e8d2f5;
+  --line-ui: #7d7869;   /* bordes de controles ≥ 3:1 */
 }
 
 .module-p00,
@@ -56,22 +59,30 @@
   --accent-soft: #123a2a;
   --note: #d2b4ef;
   --note-soft: #2e2238;
+  --line-ui: #807a70;
 }
 
 .module-p03 {
-  --paper: #0f8a5f;
-  --paper-2: #0c7a54;
-  --paper-3: #0a6a49;
+  --paper: #0e7f57;
+  --paper-2: #0c714e;
+  --paper-3: #0a6446;
   --ink: #ffffff;
-  --ink-2: #ecf8f2;
-  --muted: #d4f0e3;
-  --line: #8fd6b6;
+  --ink-2: #f4fbf7;
+  --muted: #eaf7f0;
+  --line: #a6e2c7;
   --line-soft: #34a57a;
+  /* Lila de acento: solo en cifras grandes (≥ 3:1). Para texto pequeño
+     se usa --accent-text, casi blanco (≥ 4.5:1). */
   --accent: #f0dcfb;
-  --accent-soft: #0a6a49;
-  --note: #f0dcfb;
-  --note-soft: #0a6a49;
+  --accent-text: #faf3fe;
+  --accent-soft: #0a6446;
+  --note: #faf3fe;
+  --note-soft: #0a6446;
+  --line-ui: #a6e2c7;
 }
+.module-p03 .module-header .step-id,
+.module-p03 .viz-flow-tag,
+.module-p03 .flow-step { color: var(--accent-text); }
 
 .module-p05 {
   --paper: #e8d2f5;
@@ -82,10 +93,11 @@
   --muted: #54435e;
   --line: #9b7fae;
   --line-soft: #ccb0df;
-  --accent: #0a6a49;
+  --accent: #075c3f;   /* a11y: #0a6a49 → #075c3f para pasar AA también sobre --paper-2 */
   --accent-soft: #c4e8d6;
   --note: #5b2596;
   --note-soft: #b9dccb;
+  --line-ui: #806494;
 }
 
 /* El fondo del documento sigue al capítulo activo */
@@ -118,7 +130,7 @@ body[data-chapter="p05"] { background: var(--c-lilac); }
    ============================================================ */
 body { --hdr-bg: #0e0d0c; --hdr-fg: #f5f1e8; }
 body[data-chapter="p01"], body[data-chapter="p02"] { --hdr-bg: #f3f2e9; --hdr-fg: #1a1915; }
-body[data-chapter="p03"] { --hdr-bg: #0f8a5f; --hdr-fg: #ffffff; }
+body[data-chapter="p03"] { --hdr-bg: #0e7f57; --hdr-fg: #ffffff; }
 body[data-chapter="p05"] { --hdr-bg: #e8d2f5; --hdr-fg: #1b1220; }
 
 .site-header {
@@ -154,6 +166,13 @@ body[data-chapter="p05"] { --hdr-bg: #e8d2f5; --hdr-fg: #1b1220; }
   border: 0;
 }
 .nav-steps a:hover { color: var(--hdr-fg); opacity: 1; border: 0; }
+/* a11y: sobre esmeralda la opacidad 0.72 baja de 4.5:1 → enlaces plenos */
+body[data-chapter="p03"] .nav-steps a,
+body[data-chapter="p03"] .site-title:hover { opacity: 1; }
+/* a11y: foco visible sobre el color de la cabecera (no el --ink global) */
+.site-header :focus-visible { outline-color: var(--hdr-fg); outline-offset: 2px; }
+/* a11y: área de toque ≥ 24px para el título-enlace */
+.site-title { padding: 8px 0; }
 .nav-steps a[aria-current="step"] { color: var(--hdr-fg); opacity: 1; background: transparent; border: 0; font-weight: 700; }
 .nav-steps a[aria-current="step"]::before { content: "[ "; }
 .nav-steps a[aria-current="step"]::after { content: " ]"; }
@@ -382,7 +401,7 @@ body[data-chapter="p05"] { --hdr-bg: #e8d2f5; --hdr-fg: #1b1220; }
 .cc-note.is-lilac { background: var(--c-lilac); color: #1b1220; }
 .cc-note.is-lilac .cc-kicker { color: #54435e; }
 .cc-note.is-emerald { background: var(--c-emerald); color: #fff; }
-.cc-note.is-emerald .cc-kicker { color: #e3f6ec; }
+.cc-note.is-emerald .cc-kicker { color: #f4fbf7; }
 
 @media (max-width: 1100px) {
   .cover-card.is-secondary { display: none; }
@@ -451,6 +470,9 @@ body[data-chapter="p05"] { --hdr-bg: #e8d2f5; --hdr-fg: #1b1220; }
   --ink-2: #dcd6ca;
   --muted: #b3ac9f;
   --line: #57524b;
+  --line-soft: #2f2c28;
+  --paper-3: #27241f;
+  --accent: #4ad69c;   /* a11y: el verde crema (#0b7550) daba 3.4:1 sobre negro */
   --note: #d2b4ef;
 }
 .module-p02 .p02-foto.is-espejo { background: var(--paper); color: var(--ink); padding: 14px; border-radius: 16px; }
@@ -703,4 +725,53 @@ body[data-chapter="p05"] { --hdr-bg: #e8d2f5; --hdr-fg: #1b1220; }
   .imm .module.is-active, .imm .module-p00.is-active * { animation: none !important; }
   .cover-card, .cover-card-inner { animation: none !important; opacity: 1; }
   body { transition: none; }
+}
+
+/* ============================================================
+   ACCESIBILIDAD (WCAG 2.2 AA) — foco, bordes de control, áreas
+   de toque y movimiento reducido. Sin cambiar la dirección visual.
+   ============================================================ */
+
+/* Saltar al contenido: invertido sobre la cabecera, siempre encima */
+.skip-link {
+  background: var(--hdr-fg);
+  color: var(--hdr-bg);
+  z-index: 200;
+  border-radius: 100px;
+}
+.skip-link:focus { color: var(--hdr-bg); outline: 2px solid var(--hdr-fg); outline-offset: 3px; }
+
+/* Bordes de controles con contraste ≥ 3:1 (1.4.11) */
+.pill,
+.q-option,
+.q-btn-back { border-color: var(--line-ui, var(--line)); }
+.pill:hover, .q-option:hover { border-color: var(--ink); }
+.q-option.is-selected { border-color: var(--accent); }
+
+/* Áreas de toque (2.5.8): mínimo 24px; 44px en móvil */
+.voz-modal-close { min-height: 44px; padding: 0 4px; }
+.gallery-card .expand-btn { min-height: 32px; }
+@media (max-width: 720px) {
+  .nav-steps a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 32px;
+  }
+  .pill, .q-btn, .gallery-card .expand-btn { min-height: 44px; }
+}
+
+/* Movimiento reducido: sin animaciones ni transiciones en ningún bloque */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  .cover-card { opacity: 1; }
+  .journey-progress { transition: none; }
 }

@@ -69,6 +69,22 @@
     setActive(resolveActiveId());
   }
 
+  /* a11y: "Saltar al contenido" apunta a #main, que no es un capítulo.
+     Sin esto, el cambio de hash devolvía a la portada (p00). Se lleva el
+     foco al título del capítulo activo sin tocar el hash. */
+  function onSkipLink(e) {
+    const link = e.target.closest && e.target.closest('a.skip-link');
+    if (!link) return;
+    e.preventDefault();
+    const active = document.querySelector('.module.is-active');
+    const target = (active && active.querySelector('h1')) || document.getElementById('main');
+    if (!target) return;
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+    try { target.focus({ preventScroll: true }); } catch (err) { target.focus(); }
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+  document.addEventListener('click', onSkipLink);
+
   async function boot() {
     try {
       await window.IEP.data.load();

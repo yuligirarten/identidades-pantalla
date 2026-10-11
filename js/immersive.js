@@ -12,7 +12,7 @@
 
   const MODULES = ['p00', 'p01', 'p02', 'p03', 'p04', 'p05', 'p06'];
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const THEME_COLOR = { p00: '#0e0d0c', p01: '#f3f2e9', p02: '#f3f2e9', p03: '#0f8a5f', p04: '#0e0d0c', p05: '#e8d2f5', p06: '#0e0d0c' };
+  const THEME_COLOR = { p00: '#0e0d0c', p01: '#f3f2e9', p02: '#f3f2e9', p03: '#0e7f57', p04: '#0e0d0c', p05: '#e8d2f5', p06: '#0e0d0c' };
 
   if (!REDUCED) document.documentElement.classList.add('imm');
 

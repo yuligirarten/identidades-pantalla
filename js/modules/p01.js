@@ -12,25 +12,20 @@
      P01 — ¿Quién eres en Instagram?
      Introducción narrativa del recorrido.
 
-     Este módulo inyecta DOS bloques dimensionados:
-       1) El placeholder del GUION editorial (texto en 2ª persona que la
-          autora redactará después). Reutiliza las clases globales
-          .placeholder / .placeholder-tag / .placeholder-note (base.css).
-       2) Dos posts de Instagram en CONTRASTE estético, dibujados con CSS
-          como placeholders dimensionados (clases nuevas en css/p01.css).
-
-     Todo contenido de copy es PROVISIONAL → marcado con TODO.
+     Este módulo inyecta DOS bloques:
+       1) El GUION editorial (texto en 2ª persona).
+       2) Dos posts de Instagram en CONTRASTE estético (clases en
+          css/p01.css).
   ------------------------------------------------------------------ */
 
-  /* BORRADOR editorial (autora a revisar): guion en 2ª persona, tono
-     ensayístico, alineado al wireframe y al marco del protocolo.
-     Listo para publicar como borrador; la autora puede pulir el texto. */
-  const GUION_PLACEHOLDER = [
-    'Abres la aplicación casi sin pensarlo. Antes de decidir nada, ya estás eligiendo: qué foto, qué luz, qué versión de ti aparece en la pantalla esta vez.',
+  /* Guion editorial en 2ª persona. Marco: Turkle (2011) y
+     Marwick y boyd (2011); referencias completas en P06. */
+  const GUION = [
+    'Abres la aplicación casi sin pensarlo. Antes de decidir nada, ya estás eligiendo: qué foto, qué luz, qué versión de ti aparece en la pantalla esta vez. En la pantalla puedes editarte antes de mostrarte, ensayar el yo que quieres ser (Turkle, 2011).',
     'Entre la imagen que cuidas y la que se te escapa hay una distancia. En ese intervalo se juega algo más serio de lo que parece: quién dices ser y quién terminas mostrando.',
-    'Acabas de egresar. El perfil que construiste para tus amigos empieza a ser leído por reclutadores, profesores, desconocidos. La misma cuadrícula tiene ahora varios públicos a la vez.',
-    'Cada publicación es una pequeña decisión sobre tu identidad: lo que subes, lo que borras, lo que dejas en borrador para siempre. Editas tu vida igual que editas una foto.',
-    'Este recorrido parte de esa tensión cotidiana. Antes de mirar las voces del campo, mírate a ti: ¿quién eres cuando eres tú en Instagram?'
+    'Acabas de egresar. El perfil que construiste para tus amigos empieza a ser leído por reclutadores, profesores, desconocidos. La misma cuadrícula tiene ahora varios públicos a la vez. Marwick y boyd (2011) lo llaman colapso de contextos: audiencias que en tu vida diaria están separadas se juntan en un solo lugar, y publicas para un público que solo puedes imaginar.',
+    'Cada publicación es una pequeña decisión sobre tu identidad: lo que subes, lo que borras, lo que dejas en borrador para siempre. Editas tu vida igual que editas una foto, pensando en quién podría estar mirando.',
+    'Este recorrido parte de esa tensión cotidiana entre la vitrina y el espejo. Antes de escuchar las voces del campo, mírate a ti: ¿quién eres cuando eres tú en Instagram?'
   ];
 
   /* Posts de referencia: fotografías reales de Instagram usadas con
@@ -56,7 +51,7 @@
   ];
 
   function renderGuion() {
-    var parrafos = GUION_PLACEHOLDER
+    var parrafos = GUION
       .map(function (p) { return '<p>' + escape(p) + '</p>'; })
       .join('');
 

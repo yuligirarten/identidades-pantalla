@@ -154,6 +154,7 @@
   z-index: 2;
   cursor: default;
   outline: none;
+  padding: 4px; /* a11y: área de foco/toque ≥ 24px alrededor del punto de 16px */
 }
 .p02-viz .axis-dot {
   display: block;

@@ -49,6 +49,7 @@
 
   /* ---- Modal único con el testimonio completo ---- */
   let dialog = null;
+  let opener = null; // botón que abrió el modal: recibe el foco al cerrar
   function getDialog() {
     if (dialog) return dialog;
     dialog = document.createElement('dialog');
@@ -58,12 +59,20 @@
       // clic fuera de la caja o en "Cerrar"
       if (e.target === dialog || e.target.closest('[data-close]')) dialog.close();
     });
+    // Escape cierra de forma nativa; en ambos casos se devuelve el foco.
+    dialog.addEventListener('close', () => {
+      if (opener && document.contains(opener)) {
+        try { opener.focus({ preventScroll: true }); } catch (e) { opener.focus(); }
+      }
+      opener = null;
+    });
     document.body.appendChild(dialog);
     return dialog;
   }
 
-  function openModal(t) {
+  function openModal(t, trigger) {
     const d = getDialog();
+    opener = trigger || document.activeElement;
     const p = polo(t);
     const tags = (t.etiquetas || []).map(tag => '<span class="tag">' + escape(labelFor(tag)) + '</span>').join('');
     d.innerHTML =
@@ -72,7 +81,7 @@
           '<p class="id-tag">' + escape(t.id) +
             (p ? '<span class="polo is-' + p + '">' + (p === 'espejo' ? 'Espejo' : 'Vitrina') + '</span>' : '') +
           '</p>' +
-          '<button type="button" class="voz-modal-close" data-close aria-label="Cerrar">Cerrar ✕</button>' +
+          '<button type="button" class="voz-modal-close" data-close aria-label="Cerrar testimonio">Cerrar <span aria-hidden="true">✕</span></button>' +
         '</div>' +
         '<blockquote class="quote" id="voz-modal-quote">' + escape(t.cita_corta) + '</blockquote>' +
         '<p class="perfil">' + escape(t.perfil) + '</p>' +
@@ -103,15 +112,19 @@
 
     const n = k => items.filter(t => polo(t) === k).length;
     filterBar.innerHTML =
-      '<button type="button" class="pill is-active" data-filter="all">Todas <span class="count">' + items.length + '</span></button>' +
-      '<button type="button" class="pill" data-filter="vitrina">Vitrina <span class="count">' + n('vitrina') + '</span></button>' +
-      '<button type="button" class="pill" data-filter="espejo">Espejo <span class="count">' + n('espejo') + '</span></button>';
+      '<button type="button" class="pill is-active" data-filter="all" aria-pressed="true">Todas <span class="count">' + items.length + '</span></button>' +
+      '<button type="button" class="pill" data-filter="vitrina" aria-pressed="false">Vitrina <span class="count">' + n('vitrina') + '</span></button>' +
+      '<button type="button" class="pill" data-filter="espejo" aria-pressed="false">Espejo <span class="count">' + n('espejo') + '</span></button>';
 
     filterBar.addEventListener('click', e => {
       const btn = e.target.closest('.pill');
       if (!btn) return;
-      filterBar.querySelectorAll('.pill').forEach(p => p.classList.remove('is-active'));
+      filterBar.querySelectorAll('.pill').forEach(p => {
+        p.classList.remove('is-active');
+        p.setAttribute('aria-pressed', 'false');
+      });
       btn.classList.add('is-active');
+      btn.setAttribute('aria-pressed', 'true');
       renderGallery(root, items, btn.dataset.filter);
     });
   }
@@ -132,7 +145,7 @@
       const btn = e.target.closest('[data-open]');
       if (!btn) return;
       const t = items.find(x => x.id === btn.dataset.open);
-      if (t) openModal(t);
+      if (t) openModal(t, btn);
     });
     root.dataset.rendered = '1';
   }

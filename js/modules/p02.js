@@ -70,8 +70,8 @@
     );
   }
 
-  /* Marco conceptual vitrina/espejo,
-     ~3 párrafos, alineado al protocolo. Antecede a los testimonios y al eje. */
+  /* Marco conceptual vitrina/espejo (Goffman, 1959; Han, 2013),
+     3 párrafos. Antecede a los testimonios y al eje. */
   function renderIntro(box) {
     if (box.dataset.rendered) return;
     box.className = 'p02-intro module-prose';
@@ -79,10 +79,13 @@
       '<p>Toda cuenta de Instagram funciona a la vez como una <strong>vitrina</strong> y como un <strong>espejo</strong>. ' +
         'Vitrina: lo que eliges mostrar, ordenado para que alguien lo mire —la mejor foto, el logro, la versión presentable ' +
         'de tu día—. Espejo: lo que miras sin enseñar, lo que guardas, los borradores que nunca llegan a publicarse. ' +
+        'Goffman (1959) ya distinguía entre la región anterior, donde sostienes una fachada frente a los demás, y la región ' +
+        'posterior, donde bajas la guardia lejos de su mirada. La vitrina es tu escenario; el espejo, tu tras bambalinas. ' +
         'La mayoría de las cuentas viven entre esos dos polos, no en uno solo.</p>' +
       '<p>Para quien acaba de egresar, esa frontera se mueve. El perfil que antes era casi un diario empieza a leerse como ' +
         'carta de presentación: lo ven colegas, reclutadores, gente que apenas conoces. Lo que antes era espejo —espontáneo, ' +
-        'sin cálculo— se vuelve vitrina, algo que se decide. Y a veces ocurre al revés: hay quien se repliega y deja de ' +
+        'sin cálculo— se vuelve vitrina, algo que se decide. Vives en una cultura que pide exponerlo todo, donde lo que no ' +
+        'se muestra parece no existir (Han, 2013). Por eso a veces ocurre al revés: hay quien se repliega y deja de ' +
         'publicar para no exponerse.</p>' +
       '<p>Este módulo no te pide elegir un lado. Lo que muestran las voces del campo es que cada quien negocia esa tensión a ' +
         'su manera, y que el resultado puede ubicarse en algún punto del recorrido entre el espejo y la vitrina. Las citas y ' +
