@@ -32,7 +32,8 @@
     "interseccionalidad": "Ejes interseccionales relevantes en el testimonio, o null",
     "comunidad": "Audiencia o comunidad principal a la que se dirige la cuenta",
     "carrera_corta": "Nombre corto de la carrera para las tarjetas de P04",
-    "egreso": "AAAA-MM de egreso; con fecha_entrevista se calcula el tiempo desde el egreso que muestra P04"
+    "egreso": "AAAA-MM de egreso; con fecha_entrevista se calcula el tiempo desde el egreso que muestra P04",
+    "egreso_texto": "Cuando no hay fecha de egreso: descripción tomada del registro de entrevista (T05–T09: \"recién egresado/a\"). No se publica una fecha específica."
   },
   "testimonios": [
     {
@@ -165,7 +166,8 @@
         "nivel_uso": "alta_publicacion",
         "primera_generacion": null,
         "carrera_corta": "Diseño",
-        "egreso": null
+        "egreso": null,
+        "egreso_texto": "recién egresada"
       },
       "tema": "Reconfiguración de la identidad digital tras el egreso",
       "etiquetas": ["autenticidad", "identidad", "algoritmo", "transicion_laboral"],
@@ -196,7 +198,8 @@
         "nivel_uso": "baja_publicacion",
         "primera_generacion": null,
         "carrera_corta": "Ingeniería",
-        "egreso": null
+        "egreso": null,
+        "egreso_texto": "recién egresado"
       },
       "tema": "La no-publicación como estrategia identitaria",
       "etiquetas": ["autenticidad", "identidad", "algoritmo", "abstencion"],
@@ -228,7 +231,8 @@
         "nivel_uso": "muy_activa",
         "primera_generacion": null,
         "carrera_corta": "Maestría en Comunicación",
-        "egreso": null
+        "egreso": null,
+        "egreso_texto": "recién egresada"
       },
       "tema": "Disolución de la frontera entre identidad personal y profesional",
       "etiquetas": ["autenticidad", "identidad", "algoritmo", "fatiga_algoritmica"],
@@ -259,7 +263,8 @@
         "nivel_uso": "expresivo",
         "primera_generacion": null,
         "carrera_corta": "Artes Visuales",
-        "egreso": null
+        "egreso": null,
+        "egreso_texto": "recién egresada"
       },
       "tema": "Autopresentación como afirmación identitaria y trabajo emocional",
       "etiquetas": ["autenticidad", "identidad", "genero", "algoritmo", "interseccionalidad"],
@@ -290,7 +295,8 @@
         "nivel_uso": "moderado",
         "primera_generacion": true,
         "carrera_corta": "Enfermería",
-        "egreso": null
+        "egreso": null,
+        "egreso_texto": "recién egresado"
       },
       "tema": "La tensión autenticidad/performance vivida desde el respeto comunitario",
       "etiquetas": ["autenticidad", "identidad", "comunidad", "algoritmo"],

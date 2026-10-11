@@ -41,6 +41,7 @@
   }
 
   // Carrera y tiempo desde el egreso a la fecha de la entrevista: "Derecho · 1 año de egreso".
+  // Sin fecha de egreso se usa egreso_texto ("recién egresada"); nunca se muestra la fecha.
   function egresoLine(t) {
     const pd = t.perfil_desglosado || {};
     if (!pd.carrera_corta) return '';
@@ -55,6 +56,8 @@
       } else if (meses > 0) {
         out += ' · ' + meses + (meses === 1 ? ' mes' : ' meses') + ' de egreso';
       }
+    } else if (pd.egreso_texto) {
+      out += ' · ' + pd.egreso_texto;
     }
     return '<p class="egreso">' + escape(out) + '</p>';
   }
