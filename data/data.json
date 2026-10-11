@@ -286,7 +286,7 @@
       "cita_corta": "Sus publicaciones son directas y poco editadas; desconfía de los perfiles demasiado perfectos.",
       "destacado": false,
       "eje_vitrina_espejo": -0.3,
-      "reconoce_algoritmo": false,
+      "reconoce_algoritmo": true,
       "se_autocensura": true,
       "abstencion": false,
       "mide_engagement": false,
