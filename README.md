@@ -49,9 +49,9 @@ Alternativas: la extensión "Live Server" de VS Code, `npx serve`, o cualquier s
 
 Versión actual: **0.4**. Estructura principal:
 
-- `testimonios`: 9 testimonios codificados y anonimizados (T01–T09).
+- `testimonios`: 15 testimonios codificados y anonimizados (T01–T15).
   - T01–T04: consultas exploratorias de PD I (comunicación política), aparecen solo en P03.
-  - T05–T09: trabajo de campo de PD II (perfil central: jóvenes recién egresados).
+  - T05–T15: trabajo de campo de PD II (perfil central: jóvenes recién egresados).
 - `posts_de_ig`: estructura vacía, se poblará en fases posteriores.
 - `glosario`: vacío.
 - `autocuestionario`: estructura con `preguntas` y `perfiles_resultado` vacíos.

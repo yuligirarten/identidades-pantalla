@@ -14,7 +14,18 @@
     fatiga_algoritmica: 'Fatiga algorítmica',
     transicion_laboral: 'Transición laboral',
     comunidad: 'Comunidad',
-    interseccionalidad: 'Interseccionalidad'
+    interseccionalidad: 'Interseccionalidad',
+    emprendimiento: 'Emprendimiento',
+    empleabilidad: 'Empleabilidad',
+    autocensura: 'Autocensura',
+    politica: 'Política',
+    doble_cuenta: 'Doble cuenta',
+    close_friends: 'Close friends',
+    primera_generacion: 'Primera generación',
+    origen: 'Origen',
+    portafolio: 'Portafolio',
+    desconexion: 'Desconexión',
+    comparacion_social: 'Comparación social'
   };
 
   function escape(s) {
