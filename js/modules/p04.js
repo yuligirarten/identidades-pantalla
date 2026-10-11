@@ -40,6 +40,25 @@
     return TAG_LABELS[tag] || tag.charAt(0).toUpperCase() + tag.slice(1).replace(/_/g, ' ');
   }
 
+  // Carrera y tiempo desde el egreso a la fecha de la entrevista: "Derecho · 1 año de egreso".
+  function egresoLine(t) {
+    const pd = t.perfil_desglosado || {};
+    if (!pd.carrera_corta) return '';
+    let out = pd.carrera_corta;
+    const m = /^(\d{4})-(\d{2})$/;
+    const e = m.exec(pd.egreso || ''), f = m.exec(t.fecha_entrevista || '');
+    if (e && f) {
+      const meses = (f[1] - e[1]) * 12 + (f[2] - e[2]);
+      if (meses >= 12) {
+        const anios = Math.round(meses / 12);
+        out += ' · ' + anios + (anios === 1 ? ' año' : ' años') + ' de egreso';
+      } else if (meses > 0) {
+        out += ' · ' + meses + (meses === 1 ? ' mes' : ' meses') + ' de egreso';
+      }
+    }
+    return '<p class="egreso">' + escape(out) + '</p>';
+  }
+
   function polo(t) {
     const e = t.eje_vitrina_espejo;
     return e == null ? null : (e < 0 ? 'espejo' : 'vitrina');
@@ -53,6 +72,7 @@
           (p ? '<span class="polo is-' + p + '">' + (p === 'espejo' ? 'Espejo' : 'Vitrina') + '</span>' : '') +
         '</p>' +
         '<blockquote class="quote">' + escape(t.cita_corta) + '</blockquote>' +
+        egresoLine(t) +
         '<p class="perfil">' + escape(t.perfil) + '</p>' +
         '<button type="button" class="expand-btn" data-open="' + escape(t.id) + '">Leer testimonio completo</button>' +
       '</article>'
@@ -96,6 +116,7 @@
           '<button type="button" class="voz-modal-close" data-close aria-label="Cerrar testimonio">Cerrar <span aria-hidden="true">✕</span></button>' +
         '</div>' +
         '<blockquote class="quote" id="voz-modal-quote">' + escape(t.cita_corta) + '</blockquote>' +
+        egresoLine(t) +
         '<p class="perfil">' + escape(t.perfil) + '</p>' +
         '<p class="full-cita">' + escape(t.cita) + '</p>' +
         '<p class="tema">' + escape(t.tema) + '</p>' +

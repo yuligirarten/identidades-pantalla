@@ -14,8 +14,8 @@
      Los tres campos booleanos describen el USO PERSONAL de Instagram.
      T02 y T04 los traen como null (perfiles profesionales), así que al
      contar solo los valores no-null quedan excluidos automáticamente
-     —sin hardcodear ids—. Lo mismo ocurre con se_autocensura en T06,
-     que es null porque ahí aplica 'abstencion', no censura selectiva.
+     —sin hardcodear ids—. abstencion y se_autocensura se codifican de
+     forma independiente (ver nota_codificacion en data.json).
 
      denominador = testimonios donde el campo aplica (valor true/false)
      numerador   = testimonios con el campo en true

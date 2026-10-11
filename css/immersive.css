@@ -564,6 +564,15 @@ body[data-chapter="p03"] .site-title:hover { opacity: 1; }
   color: var(--ink);
   margin: 0;
 }
+.gallery-card .egreso,
+.voz-modal .egreso {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0;
+}
 .gallery-card .perfil,
 .voz-modal .perfil {
   font-family: var(--sans);
