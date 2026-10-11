@@ -140,12 +140,11 @@
         '<div class="q-nav">' +
           (puedeAtras
             ? '<button type="button" class="q-btn q-btn-back" data-act="atras">← Atrás</button>'
-            : '<span></span>') +
-          (tieneSel
-            ? '<button type="button" class="q-btn q-btn-next" data-act="' +
-                (esUltima ? 'ver' : 'siguiente') + '">' +
-                (esUltima ? 'Ver mi resultado →' : 'Siguiente →') + '</button>'
-            : '<span class="q-hint">Elige una opción · sin respuestas correctas</span>') +
+            : '<span class="q-hint">Sin respuestas correctas</span>') +
+          // El botón siempre existe (no cambia el alto); se habilita al elegir.
+          '<button type="button" class="q-btn q-btn-next" data-act="' +
+            (esUltima ? 'ver' : 'siguiente') + '"' + (tieneSel ? '' : ' disabled') + '>' +
+            (esUltima ? 'Ver mi resultado →' : 'Siguiente →') + '</button>' +
         '</div>' +
       '</div>'
     );
@@ -179,7 +178,7 @@
   }
 
   /* ---- Pinta la pantalla actual y gestiona el foco ---- */
-  function render(el) {
+  function render(el, moveFocus) {
     const intro =
       '<p class="p05-intro">Seis preguntas para mirar tu propio modo de ' +
         'presentarte. No hay respuestas correctas: al final te devolvemos ' +
@@ -191,14 +190,31 @@
       intro +
       '<div class="q-stage" aria-live="polite">' + cuerpo + '</div>';
 
-    // Gestión del foco al cambiar de pantalla.
-    if (mostrandoResultado) {
-      const tag = el.querySelector('.q-result-tag');
-      if (tag) { tag.setAttribute('tabindex', '-1'); tag.focus(); }
-    } else {
-      const txt = el.querySelector('#p05-pregunta');
-      if (txt) txt.focus();
+    // El botón "Continuar" de la página solo aparece al terminar (un solo CTA a la vez).
+    const sec = document.getElementById('p05');
+    if (sec) sec.classList.toggle('quiz-done', mostrandoResultado);
+
+    // Gestión del foco al cambiar de pantalla, sin desplazar la página.
+    if (!moveFocus) return;
+    const target = mostrandoResultado
+      ? el.querySelector('.q-result-tag')
+      : el.querySelector('#p05-pregunta');
+    if (target) {
+      target.setAttribute('tabindex', '-1');
+      try { target.focus({ preventScroll: true }); } catch (e) { target.focus(); }
     }
+  }
+
+  /* ---- Marca la opción elegida sin volver a pintar (evita saltos) ---- */
+  function seleccionar(el, op) {
+    respuestas[indice] = op;
+    el.querySelectorAll('.q-option').forEach(b => {
+      const on = Number(b.dataset.op) === op;
+      b.classList.toggle('is-selected', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    const next = el.querySelector('.q-btn-next');
+    if (next) next.disabled = false;
   }
 
   /* ---- Un único listener delegado en el contenedor ---- */
@@ -208,8 +224,7 @@
 
     // Selección de opción
     if (btn.dataset.op != null) {
-      respuestas[indice] = Number(btn.dataset.op);
-      render(el);
+      seleccionar(el, Number(btn.dataset.op));
       return;
     }
 
@@ -217,15 +232,15 @@
     if (act === 'siguiente') {
       if (respuestas[indice] != null && indice < preguntas.length - 1) {
         indice++;
-        render(el);
+        render(el, true);
       }
     } else if (act === 'atras') {
-      if (indice > 0) { indice--; render(el); }
+      if (indice > 0) { indice--; render(el, true); }
     } else if (act === 'ver') {
-      if (respuestas[indice] != null) { mostrandoResultado = true; render(el); }
+      if (respuestas[indice] != null) { mostrandoResultado = true; render(el, true); }
     } else if (act === 'reiniciar') {
       reset();
-      render(el);
+      render(el, true);
     }
   }
 
