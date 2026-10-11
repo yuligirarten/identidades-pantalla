@@ -60,8 +60,7 @@
       "tipo_registro": "registro_investigadora",
       "fecha_entrevista": "2026-02",
       "consentimiento": true,
-      "anonimizado": true,
-      "_revisar": true
+      "anonimizado": true
     },
     {
       "id": "T02",
@@ -69,7 +68,7 @@
       "perfil": "Community manager, campañas municipales en Nuevo León",
       "perfil_desglosado": {
         "edad": null,
-        "genero": null,
+        "genero": "hombre",
         "ubicacion": "Nuevo León",
         "ocupacion": "community_manager",
         "nivel_uso": "profesional",
@@ -91,7 +90,6 @@
       "fecha_entrevista": "2026-02",
       "consentimiento": true,
       "anonimizado": true,
-      "_revisar": false,
       "_nota": "Perfil profesional; los booleanos de uso personal no aplican."
     },
     {
@@ -103,7 +101,7 @@
         "genero": "mujer",
         "ubicacion": "Linares",
         "ocupacion": "egresada_insercion_laboral",
-        "nivel_uso": null,
+        "nivel_uso": "activa",
         "primera_generacion": null
       },
       "tema": "Puente entre consumo político y autopresentación propia",
@@ -121,16 +119,15 @@
       "tipo_registro": "registro_investigadora",
       "fecha_entrevista": "2026-02",
       "consentimiento": true,
-      "anonimizado": true,
-      "_revisar": true
+      "anonimizado": true
     },
     {
       "id": "T04",
       "modulos": ["P03"],
-      "perfil": "Diseñadora de contenido y community manager freelance, 27, Nuevo León",
+      "perfil": "Diseñadora de contenido y community manager freelance, 29, Nuevo León",
       "perfil_desglosado": {
-        "edad": 27,
-        "genero": null,
+        "edad": 29,
+        "genero": "mujer",
         "ubicacion": "Nuevo León",
         "ocupacion": "disenadora_contenido_community_manager",
         "nivel_uso": "profesional",
@@ -152,7 +149,6 @@
       "fecha_entrevista": "2026-02",
       "consentimiento": true,
       "anonimizado": true,
-      "_revisar": false,
       "_nota": "Perfil profesional; los booleanos de uso personal no aplican."
     },
     {
@@ -182,8 +178,7 @@
       "tipo_registro": "registro_investigadora",
       "fecha_entrevista": "2026-05",
       "consentimiento": true,
-      "anonimizado": true,
-      "_revisar": true
+      "anonimizado": true
     },
     {
       "id": "T06",
@@ -213,7 +208,6 @@
       "fecha_entrevista": "2026-05",
       "consentimiento": true,
       "anonimizado": true,
-      "_revisar": true,
       "_nota": "Abstención total como acto identitario; se_autocensura null porque no aplica la categoría de censura selectiva."
     },
     {
@@ -243,8 +237,7 @@
       "tipo_registro": "registro_investigadora",
       "fecha_entrevista": "2026-05",
       "consentimiento": true,
-      "anonimizado": true,
-      "_revisar": true
+      "anonimizado": true
     },
     {
       "id": "T08",
@@ -273,8 +266,7 @@
       "tipo_registro": "registro_investigadora",
       "fecha_entrevista": "2026-05",
       "consentimiento": true,
-      "anonimizado": true,
-      "_revisar": true
+      "anonimizado": true
     },
     {
       "id": "T09",
@@ -282,7 +274,7 @@
       "perfil": "Egresado de Enfermería, 25, Montemorelos, primera generación, uso moderado",
       "perfil_desglosado": {
         "edad": 25,
-        "genero": null,
+        "genero": "hombre",
         "ubicacion": "Montemorelos",
         "ocupacion": "egresado_enfermeria",
         "nivel_uso": "moderado",
@@ -303,8 +295,7 @@
       "tipo_registro": "registro_investigadora",
       "fecha_entrevista": "2026-05",
       "consentimiento": true,
-      "anonimizado": true,
-      "_revisar": true
+      "anonimizado": true
     },
     {
       "id": "T10",
@@ -323,7 +314,7 @@
         "frecuencia_publicacion": "historias diarias, 3-4 publicaciones por semana"
       },
       "tema": "La cuenta personal convertida en aparador del negocio",
-      "etiquetas": ["autenticidad", "transicion_laboral", "emprendimiento", "metricas", "algoritmo", "genero"],
+      "etiquetas": ["autenticidad", "emprendimiento", "metricas", "genero"],
       "cita": "Su cuenta personal se convirtió en la cuenta del negocio a los pocos meses de egresar. Habla de su perfil en términos de catálogo y conversión. Revisa vistas de reels en la primera hora y ajusta horario y formato según resultados. Borró contenido personal que considera poco profesional. Percibe un trato distinto hacia hombres y mujeres que emprenden en redes.",
       "cita_corta": "Si un reel no pasa de mil vistas en la primera hora, ya sé que se murió.",
       "citas": [
@@ -334,7 +325,7 @@
         "A un vato que vende le dicen emprendedor; a mi hermana que vende le dicen que es su hobby."
       ],
       "destacado": false,
-      "eje_vitrina_espejo": 0.8,
+      "eje_vitrina_espejo": 1,
       "reconoce_algoritmo": true,
       "se_autocensura": true,
       "abstencion": false,
@@ -348,8 +339,7 @@
       "tipo_registro": "registro_investigadora",
       "fecha_entrevista": "2026-10",
       "consentimiento": true,
-      "anonimizado": true,
-      "_revisar": true
+      "anonimizado": true
     },
     {
       "id": "T11",
@@ -368,7 +358,7 @@
         "frecuencia_publicacion": "casi nunca (antes semanal)"
       },
       "tema": "Limpieza del perfil y autocensura por empleabilidad",
-      "etiquetas": ["autenticidad", "transicion_laboral", "empleabilidad", "autocensura", "abstencion", "politica"],
+      "etiquetas": ["autenticidad", "empleabilidad", "autocensura", "politica"],
       "cita": "Tras una entrevista laboral en la que le comentaron que revisan redes, archivó la mayor parte de su perfil en una noche. Cambió foto y biografía a un tono profesional. Ahora siente que el perfil vacío también lo expone. Evita temas políticos aunque le interesan. Reconoce el algoritmo de forma vaga y no mide engagement.",
       "cita_corta": "Ser auténtico es un lujo de los que ya tienen chamba.",
       "citas": [
@@ -378,7 +368,7 @@
         "Ser auténtico es un lujo de los que ya tienen chamba."
       ],
       "destacado": false,
-      "eje_vitrina_espejo": 0.5,
+      "eje_vitrina_espejo": 0.6,
       "reconoce_algoritmo": false,
       "se_autocensura": true,
       "abstencion": true,
@@ -393,8 +383,7 @@
       "fecha_entrevista": "2026-10",
       "consentimiento": true,
       "anonimizado": true,
-      "_revisar": true,
-      "_nota": "Combina abstención (casi no publica) con autocensura selectiva previa (archivó ~60 publicaciones y evita temas políticos); por eso ambos campos van en true."
+      "_nota": "Abstención (“ya ni subo nada” [23:53]) con autocensura selectiva previa: archivó ~60 publicaciones [05:07] y evita política [18:20]; ambos campos en true según la hoja de codificación."
     },
     {
       "id": "T12",
@@ -413,7 +402,7 @@
         "frecuencia_publicacion": "pública: 1-2 al mes; privada: varias por semana"
       },
       "tema": "La doble cuenta: vitrina pública y espejo privado",
-      "etiquetas": ["autenticidad", "identidad", "transicion_laboral", "doble_cuenta", "close_friends", "genero", "interseccionalidad"],
+      "etiquetas": ["autenticidad", "doble_cuenta", "close_friends", "genero"],
       "cita": "Maneja una cuenta pública profesional, que sigue su jefe, y una cuenta privada con unas 40 personas más close friends. Describe cada cuenta como una parte distinta de sí misma. La pública está muy curada; la privada es espontánea. Relata un comentario laboral sobre una foto en la playa que leyó como juicio de género.",
       "cita_corta": "En la pública soy la licenciada; en la otra soy yo con la cara hinchada a las dos de la mañana.",
       "citas": [
@@ -423,7 +412,7 @@
         "Las dos cuentas son auténticas, nomás que cada una enseña un pedazo."
       ],
       "destacado": false,
-      "eje_vitrina_espejo": 0.0,
+      "eje_vitrina_espejo": 0,
       "reconoce_algoritmo": true,
       "se_autocensura": true,
       "abstencion": false,
@@ -437,8 +426,7 @@
       "tipo_registro": "registro_investigadora",
       "fecha_entrevista": "2026-10",
       "consentimiento": true,
-      "anonimizado": true,
-      "_revisar": true
+      "anonimizado": true
     },
     {
       "id": "T13",
@@ -457,7 +445,7 @@
         "frecuencia_publicacion": "1-2 publicaciones al mes"
       },
       "tema": "Primera generación universitaria y mirada comunitaria fuera del área metropolitana",
-      "etiquetas": ["autenticidad", "identidad", "primera_generacion", "comunidad", "origen", "interseccionalidad"],
+      "etiquetas": ["autenticidad", "primera_generacion", "comunidad_local", "origen"],
       "cita": "Primera de su familia en terminar la universidad. Su graduación fue un logro familiar compartido en redes por su mamá. En su municipio, lo que publica circula rápido en conversaciones cara a cara, lo que la hace cuidadosa. Durante la carrera en Monterrey recibió comentarios sobre su forma de hablar y dejó de subir videos hablando. Reconoce poco el algoritmo.",
       "cita_corta": "Aquí todos se conocen, si subo algo el lunes ya lo comentan en la tiendita.",
       "citas": [
@@ -468,7 +456,7 @@
         "Ser auténtica es no aparentar que tengo lo que no tengo."
       ],
       "destacado": false,
-      "eje_vitrina_espejo": -0.4,
+      "eje_vitrina_espejo": -0.6,
       "reconoce_algoritmo": false,
       "se_autocensura": true,
       "abstencion": false,
@@ -482,8 +470,7 @@
       "tipo_registro": "registro_investigadora",
       "fecha_entrevista": "2026-10",
       "consentimiento": true,
-      "anonimizado": true,
-      "_revisar": true
+      "anonimizado": true
     },
     {
       "id": "T14",
@@ -502,7 +489,7 @@
         "frecuencia_publicacion": "3 publicaciones por semana"
       },
       "tema": "Instagram como portafolio: el proceso creativo moldeado por las métricas",
-      "etiquetas": ["autenticidad", "transicion_laboral", "portafolio", "metricas", "algoritmo", "genero", "interseccionalidad"],
+      "etiquetas": ["autenticidad", "portafolio", "metricas", "algoritmo", "genero"],
       "cita": "Usa Instagram como portafolio y principal canal de clientes. Revisa Insights cada semana y ha cambiado su proceso creativo según lo que la plataforma premia (carruseles de proceso, constancia de estilo). Habla del algoritmo de forma explícita y con vocabulario técnico. Menciona que algunos clientes ignoran los pronombres de su biografía.",
       "cita_corta": "Aprendí que los carruseles con proceso se guardan más que la pieza terminada, y cambié cómo dibujo.",
       "citas": [
@@ -513,7 +500,7 @@
         "Auténtico es que el trazo sea mío, aunque el formato lo dicte la app."
       ],
       "destacado": false,
-      "eje_vitrina_espejo": 0.8,
+      "eje_vitrina_espejo": 0.9,
       "reconoce_algoritmo": true,
       "se_autocensura": true,
       "abstencion": false,
@@ -527,8 +514,7 @@
       "tipo_registro": "registro_investigadora",
       "fecha_entrevista": "2026-10",
       "consentimiento": true,
-      "anonimizado": true,
-      "_revisar": true
+      "anonimizado": true
     },
     {
       "id": "T15",
@@ -547,7 +533,7 @@
         "frecuencia_publicacion": "cuenta desactivada desde hace 5 meses"
       },
       "tema": "Desactivar la cuenta para dejar de compararse",
-      "etiquetas": ["autenticidad", "transicion_laboral", "desconexion", "comparacion_social", "abstencion", "algoritmo", "genero"],
+      "etiquetas": ["autenticidad", "desconexion", "comparacion_social", "genero"],
       "cita": "Desactivó Instagram poco después de egresar, al compararse con compañeros que ya tenían empleo. Distingue entre dejar de publicar y dejar de mirar: lo que buscaba era dejar de consumir. Atribuye a la plataforma mostrarle contenido que reforzaba su sensación de atraso. Antes revisaba likes; ahora no recuerda cifras. Vincula la presión a expectativas de género.",
       "cita_corta": "No es que dejara de publicar, es que dejé de compararme cada mañana.",
       "citas": [
@@ -558,9 +544,9 @@
         "A los hombres se espera que ya estén resueltos; yo no lo estaba."
       ],
       "destacado": false,
-      "eje_vitrina_espejo": -0.6,
+      "eje_vitrina_espejo": -0.5,
       "reconoce_algoritmo": true,
-      "se_autocensura": null,
+      "se_autocensura": false,
       "abstencion": true,
       "mide_engagement": false,
       "transicion_laboral": "La comparación durante la búsqueda de empleo motiva la desactivación.",
@@ -573,8 +559,7 @@
       "fecha_entrevista": "2026-10",
       "consentimiento": true,
       "anonimizado": true,
-      "_revisar": true,
-      "_nota": "Abstención total (cuenta desactivada); se_autocensura null porque no aplica la categoría de censura selectiva, igual que en T06."
+      "_nota": "Codificación retrospectiva: cuenta desactivada desde mayo de 2026. se_autocensura false porque no omitía contenido; se retiró del consumo [07:08]."
     }
   ],
   "posts_de_ig": [],

@@ -22,6 +22,7 @@
     doble_cuenta: 'Doble cuenta',
     close_friends: 'Close friends',
     primera_generacion: 'Primera generación',
+    comunidad_local: 'Comunidad local',
     origen: 'Origen',
     portafolio: 'Portafolio',
     desconexion: 'Desconexión',
