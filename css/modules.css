@@ -1,5 +1,5 @@
 /* ============================================================
-   P00 — Inicio (pantalla detonante)
+   P00 · Inicio (pantalla detonante)
    ============================================================ */
 .module-p00 {
   padding-top: var(--s-9);
@@ -40,7 +40,7 @@
 .p00-signature strong { color: var(--ink-2); font-weight: 500; }
 
 /* ============================================================
-   P02 — La vitrina y el espejo
+   P02 · La vitrina y el espejo
    ============================================================ */
 .destacados {
   display: grid;
@@ -186,7 +186,7 @@
 .draft-tag::before { content: "✎ "; color: var(--accent); }
 
 /* ============================================================
-   P03 — El algoritmo invisible
+   P03 · El algoritmo invisible
    ============================================================ */
 .p03-lead {
   margin-bottom: var(--s-6);
@@ -375,7 +375,7 @@
 }
 
 /* ============================================================
-   P04 — Voces del campo (galería filtrable)
+   P04 · Voces del campo (galería filtrable)
    ============================================================ */
 .p04-intro {
   margin-bottom: var(--s-5);
@@ -548,7 +548,7 @@
 }
 
 /* ============================================================
-   P06 — Créditos
+   P06 · Créditos
    ============================================================ */
 .credits {
   display: grid;

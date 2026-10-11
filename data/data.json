@@ -10,7 +10,7 @@
     "perfil_desglosado": "Subcampos del perfil para filtros y visualizaciones",
     "tema": "Tema principal codificado",
     "etiquetas": "Etiquetas para los filtros de P04",
-    "cita": "Síntesis anonimizada del testimonio — texto fijo, no editar sin proceso editorial explícito",
+    "cita": "Síntesis anonimizada del testimonio; texto fijo, no editar sin proceso editorial explícito",
     "cita_corta": "Pull-quote de 1–2 líneas para uso en tarjetas y destacados",
     "destacado": "true si aparece como testimonio hero en P02 o P03",
     "eje_vitrina_espejo": "Número de -1 (espejo/íntimo) a 1 (vitrina/público). null en T01–T04 (no aplica)",
@@ -37,7 +37,7 @@
   "testimonios": [
     {
       "id": "T01",
-      "modulos": ["P03"],
+      "modulos": ["P03", "P04"],
       "perfil": "Ciudadanía joven, 23, Montemorelos, usuaria activa de Instagram",
       "perfil_desglosado": {
         "edad": 23,
@@ -66,7 +66,7 @@
     },
     {
       "id": "T02",
-      "modulos": ["P03"],
+      "modulos": ["P03", "P04"],
       "perfil": "Community manager, campañas municipales en Nuevo León",
       "perfil_desglosado": {
         "edad": null,
@@ -96,7 +96,7 @@
     },
     {
       "id": "T03",
-      "modulos": ["P03"],
+      "modulos": ["P03", "P04"],
       "perfil": "Egresada, 25, Linares, en inserción laboral",
       "perfil_desglosado": {
         "edad": 25,
@@ -125,7 +125,7 @@
     },
     {
       "id": "T04",
-      "modulos": ["P03"],
+      "modulos": ["P03", "P04"],
       "perfil": "Diseñadora de contenido y community manager freelance, 29, Nuevo León",
       "perfil_desglosado": {
         "edad": 29,

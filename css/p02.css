@@ -1,5 +1,5 @@
 /* ============================================================
-   P02 — La vitrina y el espejo
+   P02 · La vitrina y el espejo
    Estilos propios del módulo:
    - #p02-intro: placeholder realista del guion conceptual
    - #p02-viz : visualización V-02, eje vitrina/espejo (datos reales)
@@ -105,7 +105,7 @@
 /* Pista del eje */
 .p02-viz .axis {
   position: relative;
-  height: 56px;
+  height: 80px;
   margin: 0 var(--s-3) var(--s-3);
 }
 .p02-viz .axis-line {

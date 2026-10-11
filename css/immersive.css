@@ -1,5 +1,5 @@
 /* ============================================================
-   CAPA INMERSIVA — dirección visual v2
+   CAPA INMERSIVA · dirección visual v2
    Referencias: creative.inc · kodeimmersive.com · grail-app.com
 
    - Cada módulo es un "capítulo" con su propia paleta. Como todos
@@ -126,7 +126,7 @@ body[data-chapter="p05"] { background: var(--c-lilac); }
 @keyframes chapter-fade { from { opacity: 0; } to { opacity: 1; } }
 
 /* ============================================================
-   CABECERA — fondo sólido del color del capítulo (no se encima)
+   CABECERA · fondo sólido del color del capítulo (no se encima)
    ============================================================ */
 body { --hdr-bg: #0e0d0c; --hdr-fg: #f5f1e8; }
 body[data-chapter="p01"], body[data-chapter="p02"] { --hdr-bg: #f3f2e9; --hdr-fg: #1a1915; }
@@ -283,7 +283,7 @@ body[data-chapter="p03"] .site-title:hover { opacity: 1; }
 }
 
 /* ============================================================
-   BOTONES — píldoras
+   BOTONES · píldoras
    ============================================================ */
 .cta {
   border-radius: 100px;
@@ -308,7 +308,7 @@ body[data-chapter="p03"] .site-title:hover { opacity: 1; }
 }
 
 /* ============================================================
-   P00 — PORTADA
+   P00 · PORTADA
    ============================================================ */
 .module-p00 { padding-top: var(--header-h); padding-bottom: clamp(16px, 3vh, 28px); }
 .module-p00.is-active { display: flex; }
@@ -412,7 +412,7 @@ body[data-chapter="p03"] .site-title:hover { opacity: 1; }
 }
 
 /* ============================================================
-   P01 — texto y posts lado a lado
+   P01 · texto y posts lado a lado
    ============================================================ */
 @media (min-width: 1024px) {
   #p01-body {
@@ -446,7 +446,7 @@ body[data-chapter="p03"] .site-title:hover { opacity: 1; }
 }
 
 /* ============================================================
-   P02 — texto y par vitrina/espejo lado a lado
+   P02 · texto y par vitrina/espejo lado a lado
    ============================================================ */
 @media (min-width: 1024px) {
   .p02-intro {
@@ -490,7 +490,7 @@ body[data-chapter="p03"] .site-title:hover { opacity: 1; }
 .p02-viz { border-radius: 18px; border-width: 1px; }
 
 /* ============================================================
-   P03 — esmeralda, cifras gigantes
+   P03 · esmeralda, cifras gigantes
    ============================================================ */
 .stat-strip { gap: clamp(16px, 3vw, 48px); }
 .stat-card { border: 0; border-top: 2px solid var(--ink); background: transparent; padding: var(--s-5) 0 0; }
@@ -502,6 +502,18 @@ body[data-chapter="p03"] .site-title:hover { opacity: 1; }
   letter-spacing: -0.04em;
 }
 .stat-frac, .stat-note, .stat-base { color: var(--ink-2); }
+#p03-hero { margin-top: var(--s-8); }
+.link-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.link-btn:hover { text-decoration-thickness: 2px; }
 .p03-hero-card {
   background: #0e0d0c;
   color: #f5f1e8;
@@ -523,7 +535,7 @@ body[data-chapter="p03"] .site-title:hover { opacity: 1; }
 .flow-desc, .viz-flow-tag, .flow-loop { color: var(--ink-2) !important; }
 
 /* ============================================================
-   P04 — galería
+   P04 · galería
    ============================================================ */
 .filter-bar { flex-wrap: nowrap; gap: 8px; border: 0; padding: 0; margin-bottom: var(--s-5); }
 .pill { border-radius: 100px; }
@@ -555,6 +567,7 @@ body[data-chapter="p03"] .site-title:hover { opacity: 1; }
 .polo { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; padding: 3px 8px; border-radius: 100px; }
 .polo.is-vitrina { background: var(--accent); color: #0e0d0c; }
 .polo.is-espejo { background: var(--note); color: #0e0d0c; }
+.polo.is-exploratoria { background: transparent; color: var(--ink-2); border: 1px solid currentColor; }
 .gallery-card .quote,
 .voz-modal .quote {
   font-family: var(--display);
@@ -620,7 +633,7 @@ body[data-chapter="p03"] .site-title:hover { opacity: 1; }
 .voz-modal .tag { font-family: var(--mono); font-size: 11px; color: var(--ink-2); border: 1px solid var(--line); border-radius: 100px; padding: 3px 10px; }
 
 /* ============================================================
-   P05 — cuestionario en una sola pantalla, sin doble CTA
+   P05 · cuestionario en una sola pantalla, sin doble CTA
    ============================================================ */
 .module-p05 .module-title { font-size: clamp(44px, 6vw, 96px); }
 .p05-intro { color: var(--ink-2); font-size: clamp(17px, 1.4vw, 21px); }
@@ -670,7 +683,7 @@ body[data-chapter="p03"] .site-title:hover { opacity: 1; }
 }
 
 /* ============================================================
-   P06 — "Detrás de la pantalla" en una sola pantalla
+   P06 · "Detrás de la pantalla" en una sola pantalla
    ============================================================ */
 .module-p06 .module-title { font-size: clamp(44px, 6.5vw, 108px); max-width: none; }
 .closing { display: grid; gap: clamp(24px, 3vw, 48px); }
@@ -737,7 +750,7 @@ body[data-chapter="p03"] .site-title:hover { opacity: 1; }
 }
 
 /* ============================================================
-   ACCESIBILIDAD (WCAG 2.2 AA) — foco, bordes de control, áreas
+   ACCESIBILIDAD (WCAG 2.2 AA) · foco, bordes de control, áreas
    de toque y movimiento reducido. Sin cambiar la dirección visual.
    ============================================================ */
 

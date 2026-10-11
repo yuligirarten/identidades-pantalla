@@ -4,13 +4,13 @@ Web doc interactivo de investigación-creación sobre cómo los jóvenes recién
 
 - **Autora**: Yulianna Girarte Neria
 - **Programa**: Maestría en Humanidades Digitales · Tec de Monterrey
-- **Etapa**: PD II — entrega intermedia (prototipo al 50%)
+- **Etapa**: PD II · entrega intermedia (prototipo al 50%)
 
 ## Stack
 
 HTML5 + CSS + JavaScript vanilla. Sin frameworks, sin build tools.
 
-- Tipografías: Fraunces (display), Inter Tight (cuerpo), JetBrains Mono (datos y mono) — vía Google Fonts.
+- Tipografías: Fraunces (display), Inter Tight (cuerpo), JetBrains Mono (datos y mono), vía Google Fonts.
 - Datos: `data/data.json` (v0.4).
 - Navegación: router por hash (`#p00` a `#p06`), una sección visible a la vez.
 
@@ -70,7 +70,7 @@ Versión actual: **0.4**. Estructura principal:
 
 | ID | Nombre | Estado |
 |----|--------|--------|
-| P00 | Inicio — pregunta detonante | Pendiente (Fase 4) |
+| P00 | Inicio · pregunta detonante | Pendiente (Fase 4) |
 | P01 | ¿Quién eres en Instagram? | Placeholder |
 | P02 | La vitrina y el espejo | Pendiente (Fase 4) |
 | P03 | El algoritmo invisible | Placeholder |

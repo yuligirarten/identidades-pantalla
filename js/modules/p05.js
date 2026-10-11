@@ -9,7 +9,7 @@
   }
 
   /* ==================================================================
-     P05 · "¿Y tú cómo te presentas?" — AUTOCUESTIONARIO REFLEXIVO
+     P05 · "¿Y tú cómo te presentas?" · AUTOCUESTIONARIO REFLEXIVO
 
      Versión INTERACTIVA. Las preguntas y los perfiles viven en
      data.json → autocuestionario.{preguntas, perfiles_resultado} y se
@@ -17,7 +17,7 @@
      contenido: solo la lógica de recorrido, scoring y render.
 
      ------------------------------------------------------------------
-     FILOSOFÍA — preguntas reflexivas, no diagnósticas. No hay
+     FILOSOFÍA · preguntas reflexivas, no diagnósticas. No hay
      respuestas correctas ni juicio normativo. El resultado es una
      LECTURA INTERPRETATIVA sobre el eje VITRINA ↔ ESPEJO, matizada por
      un segundo eje transversal de CONCIENCIA ALGORÍTMICA (opaco↔lúcido).
@@ -26,7 +26,7 @@
        presentacion:  negativo → ESPEJO   |   positivo → VITRINA
        conciencia:    negativo → OPACO    |   positivo → LÚCIDO
 
-     SCORING — acumulación simple sobre dos ejes:
+     SCORING · acumulación simple sobre dos ejes:
        scorePresentacion = Σ opcion.pesos.presentacion
        scoreConciencia   = Σ opcion.pesos.conciencia
 

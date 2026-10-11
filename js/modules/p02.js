@@ -77,14 +77,14 @@
     box.className = 'p02-intro module-prose';
     box.innerHTML =
       '<p>Toda cuenta de Instagram funciona a la vez como una <strong>vitrina</strong> y como un <strong>espejo</strong>. ' +
-        'Vitrina: lo que eliges mostrar, ordenado para que alguien lo mire —la mejor foto, el logro, la versión presentable ' +
-        'de tu día—. Espejo: lo que miras sin enseñar, lo que guardas, los borradores que nunca llegan a publicarse. ' +
+        'Vitrina: lo que eliges mostrar, ordenado para que alguien lo mire: la mejor foto, el logro, la versión presentable ' +
+        'de tu día. Espejo: lo que miras sin enseñar, lo que guardas, los borradores que nunca llegan a publicarse. ' +
         'Goffman (1959) ya distinguía entre la región anterior, donde sostienes una fachada frente a los demás, y la región ' +
         'posterior, donde bajas la guardia lejos de su mirada. La vitrina es tu escenario; el espejo, tu tras bambalinas. ' +
         'La mayoría de las cuentas viven entre esos dos polos, no en uno solo.</p>' +
       '<p>Para quien acaba de egresar, esa frontera se mueve. El perfil que antes era casi un diario empieza a leerse como ' +
-        'carta de presentación: lo ven colegas, reclutadores, gente que apenas conoces. Lo que antes era espejo —espontáneo, ' +
-        'sin cálculo— se vuelve vitrina, algo que se decide. Vives en una cultura que pide exponerlo todo, donde lo que no ' +
+        'carta de presentación: lo ven colegas, reclutadores, gente que apenas conoces. Lo que antes era espejo, espontáneo ' +
+        'y sin cálculo, se vuelve vitrina, algo que se decide. Vives en una cultura que pide exponerlo todo, donde lo que no ' +
         'se muestra parece no existir (Han, 2013). Por eso a veces ocurre al revés: hay quien se repliega y deja de ' +
         'publicar para no exponerse.</p>' +
       '<p>Este módulo no te pide elegir un lado. Lo que muestran las voces del campo es que cada quien negocia esa tensión a ' +
@@ -102,9 +102,15 @@
       .sort((a, b) => a.eje_vitrina_espejo - b.eje_vitrina_espejo);
     if (!items.length) return;
 
+    // Testimonios con el mismo valor se apilan en vertical para que ninguno quede oculto.
+    const porValor = {};
+    items.forEach(t => { (porValor[t.eje_vitrina_espejo] = porValor[t.eje_vitrina_espejo] || []).push(t.id); });
+
     const dots = items.map(t => {
       const eje = t.eje_vitrina_espejo;
       const left = ((eje + 1) / 2 * 100);
+      const grupo = porValor[eje];
+      const offset = (grupo.indexOf(t.id) - (grupo.length - 1) / 2) * 26;
       const side = eje < 0 ? 'is-espejo' : (eje > 0 ? 'is-vitrina' : 'is-centro');
       const cita = escape(t.cita_corta);
       const id = escape(t.id);
@@ -112,7 +118,7 @@
       const aria = id + ', ' + (eje < 0 ? 'espejo' : eje > 0 ? 'vitrina' : 'centro') +
         ' eje ' + ejeStr + '. ' + cita;
       return (
-        '<span class="axis-point ' + side + '" style="left:' + left.toFixed(2) + '%" ' +
+        '<span class="axis-point ' + side + '" style="left:' + left.toFixed(2) + '%;top:calc(50% + ' + offset + 'px)" ' +
           'tabindex="0" role="listitem" aria-label="' + aria + '">' +
           '<span class="axis-dot"></span>' +
           '<span class="axis-tip" role="presentation">' +

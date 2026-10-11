@@ -14,7 +14,7 @@
      Los tres campos booleanos describen el USO PERSONAL de Instagram.
      T02 y T04 los traen como null (perfiles profesionales), así que al
      contar solo los valores no-null quedan excluidos automáticamente
-     —sin hardcodear ids—. abstencion y se_autocensura se codifican de
+     (sin hardcodear ids). abstencion y se_autocensura se codifican de
      forma independiente (ver nota_codificacion en data.json).
 
      denominador = testimonios donde el campo aplica (valor true/false)
@@ -24,17 +24,17 @@
     {
       campo: 'reconoce_algoritmo',
       titulo: 'reconoce el algoritmo',
-      nota: 'Nombran o describen el algoritmo de forma explícita en su uso personal.'
+      nota: 'Atribuyen a la plataforma qué contenido se ve, a quién le llega y cuánto alcance tiene.'
     },
     {
       campo: 'se_autocensura',
       titulo: 'se autocensura',
-      nota: 'Modifican o retienen contenido específico por presión externa o interna.'
+      nota: 'Omiten, archivan o borran contenido porque anticipan un juicio externo.'
     },
     {
       campo: 'abstencion',
       titulo: 'se abstiene de publicar',
-      nota: 'Retienen por completo lo que publican como forma deliberada de control sobre su imagen.'
+      nota: 'Casi nunca publican o dejaron la plataforma.'
     }
   ];
 
@@ -70,7 +70,7 @@
   }
 
   /* ------------------------------------------------------------------
-     TESTIMONIO HERO (anclaje cita) — humaniza los datos.
+     TESTIMONIO HERO (anclaje cita) · humaniza los datos.
      T08 nombra el algoritmo como filtro que invisibiliza lo distinto.
   ------------------------------------------------------------------ */
   function renderHero(root, items) {

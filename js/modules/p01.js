@@ -9,7 +9,7 @@
   }
 
   /* ------------------------------------------------------------------
-     P01 — ¿Quién eres en Instagram?
+     P01 · ¿Quién eres en Instagram?
      Introducción narrativa del recorrido.
 
      Este módulo inyecta DOS bloques:

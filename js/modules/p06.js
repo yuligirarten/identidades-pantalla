@@ -2,7 +2,7 @@
   'use strict';
 
   /* ------------------------------------------------------------------
-     P06 — Detrás de la pantalla
+     P06 · Detrás de la pantalla
      Abre y cierra el <dialog> de referencias (APA 7). El marcado vive
      en index.html; aquí solo se enlazan los eventos, una sola vez.
   ------------------------------------------------------------------ */
